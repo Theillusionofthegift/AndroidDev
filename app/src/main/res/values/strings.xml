@@ -11,4 +11,5 @@
     <string name="key_textview_text">texty text</string>
     <string name="title_activity_thanks">Thanks</string>
     <string name="thanks">"Thanks For Signing Up "</string>
+    <string name="DOB">Date Of Birth</string>
 </resources>

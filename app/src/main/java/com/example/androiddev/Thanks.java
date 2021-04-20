@@ -35,7 +35,10 @@ public class Thanks extends AppCompatActivity {
         mTextView.setText(msg);
     }
 
+
     public void goToForm(View view) {
-        startActivity(new Intent(this, ForumActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+        finish();
     }
+
+
 }
