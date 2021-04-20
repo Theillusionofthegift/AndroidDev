@@ -1,5 +1,14 @@
 <resources>
     <string name="app_name">AndroidDev</string>
     <string name="hello_world">Hello World!</string>
-    <string name="my_name">Dylan Eastridge 04/7/2021</string>
+    <string name="my_name">Eastridge,Dylan 04/18/2021</string>
+    <string name="text_1">Click the cat to enter!</string>
+    <string name="title_activity_forum">ForumActivity</string>
+    <string name="title">Sign Up!</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="username">Username</string>
+    <string name="key_textview_text">texty text</string>
+    <string name="title_activity_thanks">Thanks</string>
+    <string name="thanks">"Thanks For Signing Up "</string>
 </resources>
