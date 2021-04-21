@@ -12,7 +12,6 @@ import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
-import static java.util.regex.Pattern.matches;
 @RunWith(AndroidJUnit4.class)
 public class MainActivityTest {
 
@@ -27,15 +26,5 @@ public class MainActivityTest {
 
         onView(withId(R.id.button2)).perform(click());
 
-        onView(withId(R.id.text)).check(matches(withText("Thanks for signing up Illusion!")));
-
-        TestUtils.rotateScreen(activityTestRule.getActivity());
-
-        // Make sure text view still has Welcome Kyle McNutt after screen rotation
-        onView(withId(R.id.textView))
-                .check(matches(withText("Welcome: Kyle McNutt")));
-    }
-
-    private Object withText(String s) {
     }
 }
