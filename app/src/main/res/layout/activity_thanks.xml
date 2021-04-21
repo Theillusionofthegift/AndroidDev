@@ -1,35 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.wear.widget.BoxInsetLayout
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/white"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ThanksActivity"
-    tools:deviceIds="wear"
-    android:padding="@dimen/box_inset_layout_padding">
+    android:layout_height="match_parent">
 
-    <FrameLayout
+    <LinearLayout
+        android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="@dimen/inner_frame_layout_padding">
+        android:layout_height="wrap_content"
+        tools:context=".MainActivity"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/text"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="250dp"
-            android:textSize="42dp" />
+            android:textSize="42dp"
+            android:layout_marginTop="50dp"/>
 
         <Button
             android:id="@+id/button3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="100dp"
-            android:layout_marginTop="450dp"
+            android:layout_marginTop="50dp"
             android:text="Another Account?"
             android:onClick="goToForm"/>
 
-    </FrameLayout>
-</androidx.wear.widget.BoxInsetLayout>
+    </LinearLayout>
+</ScrollView>
