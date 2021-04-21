@@ -1,8 +1,6 @@
 package com.example.androiddev;
 
 
-import android.content.Intent;
-
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
@@ -18,19 +16,13 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 @RunWith(AndroidJUnit4.class)
 public class ThanksActivityTest {
 
-    Intent getActivityIntent() {
-        Intent testIntent = new Intent();
-        testIntent.putExtra(Constants.KEY_NAME, "Illusion");
-        return testIntent;
-    }
-
     @Rule
     public ActivityScenarioRule<ThanksActivity> activityScenarioRule
-            = new ActivityScenarioRule<>(getActivityIntent());
+            = new ActivityScenarioRule<ThanksActivity>(ThanksActivity.class);
 
 
     @Test
     public void canEnterNameAndSignUp() {
-        onView(withId(R.id.text)).check(matches(withText("Thanks For Signing Up Illusion!")));
+        onView(withId(R.id.text)).check(matches(withText("Thanks for signing up Blank!")));
     }
 }
