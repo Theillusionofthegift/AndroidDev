@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class Thanks extends AppCompatActivity {
+public class ThanksActivity extends AppCompatActivity {
 
     private TextView mTextView;
 

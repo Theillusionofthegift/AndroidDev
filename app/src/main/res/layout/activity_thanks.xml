@@ -6,7 +6,7 @@
     android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Thanks"
+    tools:context=".ThanksActivity"
     tools:deviceIds="wear"
     android:padding="@dimen/box_inset_layout_padding">
 

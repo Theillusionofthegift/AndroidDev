@@ -20,6 +20,7 @@ public class ForumActivity extends AppCompatActivity implements DatePickerDialog
 
     private TextView mTextView;
     private TextView tvDate;
+    private TextView userName;
     private Button btPickDate;
     private EditText eText;
 
@@ -81,18 +82,28 @@ public class ForumActivity extends AppCompatActivity implements DatePickerDialog
 
     public void submitForm(View view) {
         mTextView = findViewById(R.id.names);
+        userName = findViewById(R.id.username);
         eText = findViewById(R.id.email);
         if(!isValidEmail(eText.getText())){
             eText.setError("Email not valid!");
             return;
         }
 
+        if(mTextView.getText().toString().matches("")){
+            mTextView.setError("Cannot Be Blank!");
+            return;
+        }
 
-        Intent intent = new Intent(ForumActivity.this, Thanks.class);
+        if(userName.getText().toString().matches("")){
+            userName.setError("Cannot Be Blank!");
+            return;
+        }
+
+        Intent intent = new Intent(ForumActivity.this, ThanksActivity.class);
         Bundle bundle = new Bundle();
 
-        TextView t = findViewById(R.id.username);
-        bundle.putString(Constants.KEY_NAME, t.getText().toString());
+
+        bundle.putString(Constants.KEY_NAME, userName.getText().toString());
         intent.putExtras(bundle);
         startActivity(intent);
     }
@@ -110,13 +121,14 @@ public class ForumActivity extends AppCompatActivity implements DatePickerDialog
     public void onDateSet(android.widget.DatePicker view, int year, int month, int dayOfMonth) {
         Date eighteen = new Date(1050871680000L);
         Button b = findViewById(R.id.button2);
+        tvDate = findViewById(R.id.tvDate);
         Calendar mCalender = Calendar.getInstance();
         mCalender.set(Calendar.YEAR, year);
         mCalender.set(Calendar.MONTH, month);
         mCalender.set(Calendar.DAY_OF_MONTH, dayOfMonth);
         String selectedDate = DateFormat.getDateInstance(DateFormat.FULL).format(mCalender.getTime());
         if(mCalender.getTime().compareTo(eighteen) > 0) {
-            tvDate.setText("Must Be Older Than 18!");
+            tvDate.setError("Must Be Older Than 18!");
             b.setEnabled(false);
         } else {
             tvDate.setText(selectedDate);
