@@ -21,6 +21,7 @@ public class ForumActivity extends AppCompatActivity implements DatePickerDialog
     private TextView mTextView;
     private TextView tvDate;
     private Button btPickDate;
+    private EditText eText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +81,11 @@ public class ForumActivity extends AppCompatActivity implements DatePickerDialog
 
     public void submitForm(View view) {
         mTextView = findViewById(R.id.names);
+        eText = findViewById(R.id.email);
+        if(!isValidEmail(eText.getText())){
+            eText.setError("Email not valid!");
+            return;
+        }
 
 
         Intent intent = new Intent(ForumActivity.this, Thanks.class);
@@ -89,6 +95,14 @@ public class ForumActivity extends AppCompatActivity implements DatePickerDialog
         bundle.putString(Constants.KEY_NAME, t.getText().toString());
         intent.putExtras(bundle);
         startActivity(intent);
+    }
+
+    public boolean isValidEmail(CharSequence target) {
+        if (target == null) {
+            return false;
+        } else {
+            return android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
+        }
     }
 
 

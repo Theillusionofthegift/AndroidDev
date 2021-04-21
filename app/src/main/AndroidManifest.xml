@@ -18,24 +18,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidDev" >
 
-        <activity
-            android:name=".Thanks"
-            android:label="@string/title_activity_thanks" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".ForumActivity"
-            android:label="@string/title_activity_forum" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity android:name=".MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -43,6 +25,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ForumActivity" />
+        <activity android:name=".Thanks" />
     </application>
 
 </manifest>

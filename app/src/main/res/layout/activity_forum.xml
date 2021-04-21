@@ -80,7 +80,8 @@
         android:layout_marginLeft="150dp"
         android:layout_marginTop="500dp"
         android:text="Submit"
-        android:onClick="submitForm"/>
+        android:onClick="submitForm"
+        android:enabled="false"/>
 
 
 </androidx.wear.widget.BoxInsetLayout>
