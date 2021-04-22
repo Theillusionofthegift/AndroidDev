@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         btPickDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Please note that use your package name here
                 com.example.androiddev.DatePicker mDatePickerDialogFragment;
                 mDatePickerDialogFragment = new com.example.androiddev.DatePicker();
                 mDatePickerDialogFragment.show(getSupportFragmentManager(), "DATE PICK");
