@@ -42,4 +42,18 @@ public class MainActivityTest {
         onView(withId(R.id.text)).check(matches(withText("Thanks for signing up Illusion!")));
 
     }
+
+
+    @Test
+    public void dataResistOrientationChange() {
+        onView(withId(R.id.names)).perform(typeText("Dylan Eastridge"));
+        onView(withId(R.id.email)).perform(typeText("theillusionofthegift@gmail.com"));
+        onView(withId(R.id.username)).perform(typeText("Illusion"));
+
+        TestUtils.rotateScreen(TestUtils.getActivity(activityScenarioRule));
+
+        onView(withId(R.id.names)).check(matches(withText("Dylan Eastridge")));
+        onView(withId(R.id.email)).check(matches(withText("theillusionofthegift@gmail.com")));
+        onView(withId(R.id.username)).check(matches(withText("Illusion")));
+    }
 }
