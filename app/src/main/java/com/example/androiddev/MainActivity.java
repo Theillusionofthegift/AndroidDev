@@ -46,18 +46,6 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
     }
 
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        EditText e1 = findViewById(R.id.name);
-        EditText e2 = findViewById(R.id.email);
-        EditText e3 = findViewById(R.id.username);
-
-        e1.setText("");
-        e2.setText("");
-        e3.setText("");
-        tvDate.setText("Date");
-    }
 
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
