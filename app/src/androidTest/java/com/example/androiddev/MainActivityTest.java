@@ -74,7 +74,7 @@ public class MainActivityTest {
 
     @Test
     public void checkValidEmail() {
-        onView(withId(R.id.email)).perform(typeText("theillusionofthegift@gmail.com"));
+        onView(withId(R.id.email)).perform(typeText("theillusionofthegift"));
 
         onView(withId(R.id.btPickDate)).perform(scrollTo(),(click()));
 
