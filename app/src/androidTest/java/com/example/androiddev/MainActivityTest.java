@@ -48,6 +48,7 @@ public class MainActivityTest {
         onView(withId(R.id.name)).check(matches(withText("Dylan Eastridge")));
         onView(withId(R.id.bio)).check(matches(withText("A very good programmer")));
         onView(withId(R.id.occupation)).check(matches(withText("Software Engineer")));
+        onView(withId(R.id.age)).check((matches(withText(": 22 Years Old."))));
 
     }
 
