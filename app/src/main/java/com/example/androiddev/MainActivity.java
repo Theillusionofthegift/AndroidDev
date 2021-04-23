@@ -1,5 +1,6 @@
 package com.example.androiddev;
 
+
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,16 +13,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
-    private TextView mTextView;
+    private EditText mTextView;
     private TextView tvDate;
-    private TextView userName;
-    private Button btPickDate;
+    private EditText userName;
+    private TextView age;
+    private EditText bio;
+    private EditText occupation;
     private EditText eText;
 
     @Override
@@ -32,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         mTextView = findViewById(R.id.text);
 
         tvDate = findViewById(R.id.tvDate);
-        btPickDate = findViewById(R.id.btPickDate);
+        Button btPickDate = findViewById(R.id.btPickDate);
         btPickDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     @Override
     protected void onRestart() {
         super.onRestart();
-        EditText e1 = findViewById(R.id.names);
+        EditText e1 = findViewById(R.id.name);
         EditText e2 = findViewById(R.id.email);
         EditText e3 = findViewById(R.id.username);
 
@@ -80,9 +82,13 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     }
 
     public void submitForm(View view) {
-        mTextView = findViewById(R.id.names);
+        mTextView = findViewById(R.id.name);
         userName = findViewById(R.id.username);
         eText = findViewById(R.id.email);
+        age = findViewById(R.id.tvDate);
+        bio = findViewById(R.id.bio);
+        occupation = findViewById(R.id.occupation);
+
         if(!isValidEmail(eText.getText())){
             eText.setError("Email not valid!");
             return;
@@ -98,11 +104,14 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
             return;
         }
 
-        Intent intent = new Intent(MainActivity.this, ThanksActivity.class);
+        Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
         Bundle bundle = new Bundle();
 
 
-        bundle.putString(Constants.KEY_NAME, userName.getText().toString());
+        bundle.putString(Constants.KEY_NAME, mTextView.getText().toString());
+        bundle.putString(Constants.KEY_AGE, age.getText().toString());
+        bundle.putString(Constants.KEY_BIO, bio.getText().toString());
+        bundle.putString(Constants.KEY_OCC, occupation.getText().toString());
         intent.putExtras(bundle);
         startActivity(intent);
     }
@@ -125,12 +134,20 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         mCalender.set(Calendar.YEAR, year);
         mCalender.set(Calendar.MONTH, month);
         mCalender.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-        String selectedDate = DateFormat.getDateInstance(DateFormat.FULL).format(mCalender.getTime());
+
+        Date d = new Date();
+
+        Long LAge = Math.subtractExact(d.getTime(), mCalender.getTime().getTime());
+        int age = (int) Long.divideUnsigned(LAge, 31557600000L);
+        StringBuilder str = new StringBuilder();
+        str.append(age);
+        str.append(" Years Old.");
+
         if(mCalender.getTime().compareTo(eighteen) > 0) {
             tvDate.setError("Must Be Older Than 18!");
             b.setEnabled(false);
         } else {
-            tvDate.setText(selectedDate);
+            tvDate.setText(str);
             b.setEnabled(true);
         }
 

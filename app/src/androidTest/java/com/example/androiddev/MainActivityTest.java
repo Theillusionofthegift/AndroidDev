@@ -12,6 +12,7 @@ import org.junit.runner.RunWith;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.scrollTo;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
@@ -27,33 +28,45 @@ public class MainActivityTest {
             = new ActivityScenarioRule<MainActivity>(MainActivity.class);
 
     @Test
-    public void canEnterNameAndSignUp() {
-        onView(withId(R.id.names)).perform(typeText("Dylan Eastridge"));
+    public void canEnterNameAndSignUp() throws InterruptedException {
+        onView(withId(R.id.name)).perform(typeText("Dylan Eastridge"));
         onView(withId(R.id.email)).perform(typeText("theillusionofthegift@gmail.com"));
         onView(withId(R.id.username)).perform(typeText("Illusion"));
+        onView(withId(R.id.bio)).perform(typeText("A very good programmer"));
+        onView(withId(R.id.occupation)).perform(typeText("Software Engineer"));
 
-        onView(withId(R.id.btPickDate)).perform((click()));
+        onView(withId(R.id.btPickDate)).perform(scrollTo(),(click()));
 
         onView(withClassName(Matchers.equalTo(android.widget.DatePicker.class.getName()))).perform(PickerActions.setDate(1999 , 4, 21));
         onView(withText("OK")).perform(click());
 
-        onView(withId(R.id.button2)).perform((click()));
+        onView(withId(R.id.button2)).perform(scrollTo(), (click()));
 
-        onView(withId(R.id.text)).check(matches(withText("Thanks for signing up Illusion!")));
+        onView(withId(R.id.profile)).check(matches(withText("Your Profile!")));
+        onView(withId(R.id.name)).check(matches(withText("Dylan Eastridge")));
+        onView(withId(R.id.bio)).check(matches(withText("A very good programmer")));
+        onView(withId(R.id.occupation)).check(matches(withText("Software Engineer")));
 
     }
 
 
     @Test
     public void dataResistOrientationChange() {
-        onView(withId(R.id.names)).perform(typeText("Dylan Eastridge"));
+        onView(withId(R.id.name)).perform(typeText("Dylan Eastridge"));
         onView(withId(R.id.email)).perform(typeText("theillusionofthegift@gmail.com"));
         onView(withId(R.id.username)).perform(typeText("Illusion"));
+        onView(withId(R.id.bio)).perform(typeText("A very good programmer"));
+        onView(withId(R.id.occupation)).perform(typeText("Software Engineer"));
 
         TestUtils.rotateScreen(TestUtils.getActivity(activityScenarioRule));
 
-        onView(withId(R.id.names)).check(matches(withText("Dylan Eastridge")));
-        onView(withId(R.id.email)).check(matches(withText("theillusionofthegift@gmail.com")));
+
+        onView(withId(R.id.name)).check(matches(withText("Dylan Eastridge")));
+        onView(withId(R.id.bio)).check(matches(withText("A very good programmer")));
+        onView(withId(R.id.occupation)).check(matches(withText("Software Engineer")));
         onView(withId(R.id.username)).check(matches(withText("Illusion")));
+        onView(withId(R.id.email)).check(matches(withText("theillusionofthegift@gmail.com")));
+
+
     }
 }

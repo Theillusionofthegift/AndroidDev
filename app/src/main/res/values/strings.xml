@@ -12,4 +12,9 @@
     <string name="title_activity_thanks">Thanks</string>
     <string name="thanks">"Thanks For Signing Up "</string>
     <string name="DOB">Date Of Birth</string>
+    <string name="bio">Bio</string>
+    <string name="occupation">Occupation</string>
+    <string name="your_profile">Your Profile!</string>
+    <string name="age">Age</string>
+    <string name="title_activity_profile">ProfileActivity</string>
 </resources>
