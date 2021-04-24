@@ -16,31 +16,29 @@
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="28dp"
+            android:layout_marginLeft="@dimen/margin_container"
+            android:layout_marginTop="@dimen/margin_container"
             android:text="@string/title"
             android:textColor="#620073"
-            android:textSize="28sp" />
+            android:textSize="@dimen/medium_font_size" />
 
         <EditText
             android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="@dimen/margin_container"
             android:ems="10"
             android:hint="@string/name"
-            app:layout_constraintEnd_toEndOf="@id/title"
-            app:layout_constraintHorizontal_bias="0.184" />
+            app:layout_constraintEnd_toEndOf="@id/title" />
 
         <EditText
             android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="@dimen/margin_container"
             android:ems="10"
             android:hint="@string/email"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.184"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -48,11 +46,10 @@
             android:id="@+id/username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="@dimen/margin_container"
             android:ems="10"
             android:hint="@string/username"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.184"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -60,11 +57,10 @@
             android:id="@+id/bio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="@dimen/margin_container"
             android:ems="10"
             android:hint="@string/bio"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.184"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -72,11 +68,10 @@
             android:id="@+id/occupation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="@dimen/margin_container"
             android:ems="10"
             android:hint="@string/occupation"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.184"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -85,8 +80,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginLeft="@dimen/margin_container"
+            android:layout_marginTop="@dimen/margin_container"
             android:text="Date of Birth" />
 
         <Button
@@ -95,16 +90,16 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/tvDate"
             android:layout_centerInParent="true"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginLeft="@dimen/margin_container"
+            android:layout_marginTop="@dimen/margin_container"
             android:text="Pick Date" />
 
         <Button
             android:id="@+id/button2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="150dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="@dimen/margin_horizontal_submit"
+            android:layout_marginTop="@dimen/margin_container"
             android:text="Submit"
             android:onClick="submitForm"
             android:enabled="false"/>
@@ -113,9 +108,9 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_horizontal_name"
             android:text="@string/my_name"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="100dp"/>
+            android:layout_marginTop="@dimen/margin_container" />
 
 
     </LinearLayout>
