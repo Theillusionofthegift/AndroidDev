@@ -106,6 +106,7 @@ public class MainActivityTest {
     @Test
     public void checkNameNotBlank() {
         onView(withId(R.id.email)).perform(typeText("theillusionofthegift@gmail.com"));
+        onView(withId(R.id.name)).perform(typeText(""));
 
         onView(withId(R.id.btPickDate)).perform(scrollTo(),(click()));
 
