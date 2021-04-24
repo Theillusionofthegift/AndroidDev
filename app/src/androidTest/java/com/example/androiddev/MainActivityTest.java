@@ -89,8 +89,23 @@ public class MainActivityTest {
     }
 
     @Test
+    public void checkEmailNotBlank() {
+        onView(withId(R.id.email)).perform(typeText(""));
+
+        onView(withId(R.id.btPickDate)).perform(scrollTo(),(click()));
+
+        onView(withClassName(Matchers.equalTo(android.widget.DatePicker.class.getName()))).perform(PickerActions.setDate(1999 , 4, 21));
+        onView(withText("OK")).perform(click());
+
+        onView(withId(R.id.button2)).perform(scrollTo(), (click()));
+
+        onView(allOf(withId(R.id.email), hasErrorText("Email not valid!")));
+
+    }
+
+    @Test
     public void checkNameNotBlank() {
-        onView(withId(R.id.name)).perform(typeText(""));
+        onView(withId(R.id.email)).perform(typeText("theillusionofthegift@gmail.com"));
 
         onView(withId(R.id.btPickDate)).perform(scrollTo(),(click()));
 
@@ -105,6 +120,8 @@ public class MainActivityTest {
 
     @Test
     public void checkUsernameNotBlank() {
+        onView(withId(R.id.name)).perform(typeText("Dylan"));
+        onView(withId(R.id.email)).perform(typeText("theillusionofthegift@gmail.com"));
         onView(withId(R.id.username)).perform(typeText(""));
 
         onView(withId(R.id.btPickDate)).perform(scrollTo(),(click()));
@@ -115,6 +132,20 @@ public class MainActivityTest {
         onView(withId(R.id.button2)).perform(scrollTo(), (click()));
 
         onView(allOf(withId(R.id.username), hasErrorText("Cannot Be Blank!")));
+
+    }
+
+    @Test
+    public void checkUnderEighteen() {
+
+        onView(withId(R.id.btPickDate)).perform(scrollTo(),(click()));
+
+        onView(withClassName(Matchers.equalTo(android.widget.DatePicker.class.getName()))).perform(PickerActions.setDate(2004 , 4, 21));
+        onView(withText("OK")).perform(click());
+
+        onView(withId(R.id.button2)).perform(scrollTo(), (click()));
+
+        onView(allOf(withId(R.id.tvDate), hasErrorText("Must Be Older Than 18!")));
 
     }
 }
