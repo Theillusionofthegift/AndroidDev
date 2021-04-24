@@ -143,8 +143,6 @@ public class MainActivityTest {
         onView(withClassName(Matchers.equalTo(android.widget.DatePicker.class.getName()))).perform(PickerActions.setDate(2004 , 4, 21));
         onView(withText("OK")).perform(click());
 
-        onView(withId(R.id.button2)).perform(scrollTo(), (click()));
-
         onView(allOf(withId(R.id.tvDate), hasErrorText("Must Be Older Than 18!")));
 
     }
