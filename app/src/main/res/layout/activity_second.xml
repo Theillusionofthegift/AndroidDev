@@ -8,10 +8,25 @@
       android:layout_width="match_parent"
       android:layout_height="match_parent">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bar_layout">
 
-  <FrameLayout
+      <androidx.appcompat.widget.Toolbar
+          android:id="@+id/app_bar"
+          style="@style/Widget.MaterialComponents.Toolbar"
+          android:layout_width="match_parent"
+          android:layout_height="?attr/actionBarSize"
+          app:title="@string/app_name" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <FrameLayout
       android:layout_width="match_parent"
       android:layout_height="match_parent"
+      android:layout_below="@+id/bar_layout"
       android:id="@+id/container"/>
 
   </RelativeLayout>

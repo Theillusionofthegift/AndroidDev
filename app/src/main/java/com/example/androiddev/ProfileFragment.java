@@ -2,21 +2,19 @@ package com.example.androiddev;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 
 public class ProfileFragment extends Fragment {
 
     private SecondActivity.Attachment attachment;
+    private FragmentManager manager;
     private TextView name;
     private TextView age;
     private TextView bio;
@@ -34,9 +32,6 @@ public class ProfileFragment extends Fragment {
             @NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment with the ProductGrid theme
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
-
-        // Set up the toolbar
-        setUpToolbar(view);
 
 
         name = view.findViewById(R.id.name);
@@ -80,21 +75,6 @@ public class ProfileFragment extends Fragment {
         outState.putString(Constants.KEY_AGE, attachment.age);
         outState.putString(Constants.KEY_OCC,attachment.occ);
     }
-
-    private void setUpToolbar(View view) {
-        Toolbar toolbar = view.findViewById(R.id.app_bar);
-        AppCompatActivity activity = (AppCompatActivity) getActivity();
-        if (activity != null) {
-            activity.setSupportActionBar(toolbar);
-        }
-    }
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater menuInflater) {
-        menuInflater.inflate(R.menu.shr_toolbar_menu, menu);
-        super.onCreateOptionsMenu(menu, menuInflater);
-    }
-
 
 
     void setAttachment(SecondActivity.Attachment attach) {

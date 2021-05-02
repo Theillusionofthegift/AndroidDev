@@ -2,8 +2,11 @@ package com.example.androiddev;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -19,6 +22,37 @@ public class SecondActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
+
+        Toolbar toolbar = findViewById(R.id.app_bar);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(new Toolbar.OnMenuItemClickListener(MenuItem) {
+
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch(item.getItemId())
+                {
+                    case R.id.nav_profile:
+                        ProfileFragment frag1 = new ProfileFragment();
+                        FragmentTransaction transaction = manager.beginTransaction();
+                        transaction.replace(R.id.container, frag1, "profile");
+                        transaction.commit();
+                        break;
+                    case R.id.nav_matches:
+                        MatchesFragment frag2 = new MatchesFragment();
+                        FragmentTransaction transaction2 = manager.beginTransaction();
+                        transaction2.replace(R.id.container, frag2, "matches");
+                        transaction2.commit();
+                        break;
+                    case R.id.nav_settings:
+                        SettingsFragment frag3 = new SettingsFragment();
+                        FragmentTransaction transaction3 = manager.beginTransaction();
+                        transaction3.replace(R.id.container, frag3, "settings");
+                        transaction3.commit();
+                        break;
+                }
+                return true;
+            }
+        });
 
         manager = getSupportFragmentManager();
         Intent intent = getIntent();
@@ -45,6 +79,15 @@ public class SecondActivity extends AppCompatActivity {
 
 
     }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.shr_toolbar_menu, menu);
+        return true;
+    }
+
+
 
     public static class Attachment {
         String name;
