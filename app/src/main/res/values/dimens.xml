@@ -18,4 +18,5 @@
     <dimen name="text_margin">16dp</dimen>
     <dimen name="textview_marginstart">29dp</dimen>
     <dimen name="onethirty">130dp</dimen>
+    <dimen name="vertical_margin_center">100dp</dimen>
 </resources>
