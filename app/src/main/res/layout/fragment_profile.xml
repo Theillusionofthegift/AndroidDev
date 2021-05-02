@@ -1,21 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".ProfileFragment">
 
-    <RelativeLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".RelativeAlignmentExampleActivity">
+        android:id="@+id/app_bar_layout">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/app_bar"
+            style="@style/Widget.MaterialComponents.Toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="@string/app_name" />
+    </com.google.android.material.appbar.AppBarLayout>
 
 
-        <TextView
+
+
+<TextView
             android:id="@+id/profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
+            android:layout_below="@+id/app_bar_layout"
             android:layout_marginTop="@dimen/margin_container"
             android:text="@string/your_profile"
             android:textSize="@dimen/large_font_size"/>
@@ -32,7 +44,7 @@
         <LinearLayout
             android:id="@+id/layout1"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/imageView"
             android:orientation="horizontal"
             android:layout_centerHorizontal="true">
@@ -84,6 +96,5 @@
             android:textSize="@dimen/small_font_size"/>
 
 
-    </RelativeLayout>
+</RelativeLayout>
 
-</ScrollView>

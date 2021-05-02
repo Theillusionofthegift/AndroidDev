@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
             return;
         }
 
-        Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+        Intent intent = new Intent(MainActivity.this, SecondActivity.class);
         Bundle bundle = new Bundle();
 
 
