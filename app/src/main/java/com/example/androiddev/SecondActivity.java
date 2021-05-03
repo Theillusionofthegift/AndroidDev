@@ -46,14 +46,16 @@ public class SecondActivity extends AppCompatActivity implements NavigationView.
         intent = getIntent();
         Bundle b = intent.getExtras();
 
-        if (b.containsKey(Constants.KEY_NAME)
-                && b.containsKey(Constants.KEY_AGE)
-                && b.containsKey(Constants.KEY_BIO)
-                && b.containsKey(Constants.KEY_OCC)) {
-            name = b.getString(Constants.KEY_NAME);
-            age = b.getString(Constants.KEY_AGE);
-            bio = b.getString(Constants.KEY_BIO);
-            occ = b.getString(Constants.KEY_OCC);
+        if(b != null) {
+            if (b.containsKey(Constants.KEY_NAME)
+                    && b.containsKey(Constants.KEY_AGE)
+                    && b.containsKey(Constants.KEY_BIO)
+                    && b.containsKey(Constants.KEY_OCC)) {
+                name = b.getString(Constants.KEY_NAME);
+                age = b.getString(Constants.KEY_AGE);
+                bio = b.getString(Constants.KEY_BIO);
+                occ = b.getString(Constants.KEY_OCC);
+            }
         }
 
 
