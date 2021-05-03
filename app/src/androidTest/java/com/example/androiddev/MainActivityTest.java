@@ -44,11 +44,11 @@ public class MainActivityTest {
 
         onView(withId(R.id.button2)).perform(scrollTo(), (click()));
 
-        onView(withId(R.id.profile)).check(matches(withText("Your Profile!")));
-        onView(withId(R.id.name)).check(matches(withText("Dylan Eastridge")));
-        onView(withId(R.id.bio)).check(matches(withText("A very good programmer")));
-        onView(withId(R.id.occupation)).check(matches(withText("Software Engineer")));
-        onView(withId(R.id.age)).check((matches(withText(": 22 Years Old."))));
+        onView(allOf(withId(R.id.profile))).check(matches(withText("Your Profile!")));
+        onView(allOf(withId(R.id.name))).check(matches(withText("Dylan Eastridge")));
+        onView(allOf(withId(R.id.bio))).check(matches(withText("A very good programmer")));
+        onView(allOf(withId(R.id.occupation))).check(matches(withText("Software Engineer")));
+        onView(allOf(withId(R.id.age))).check((matches(withText("22 Years Old."))));
 
     }
 
