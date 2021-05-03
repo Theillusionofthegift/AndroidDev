@@ -2,60 +2,48 @@ package com.example.androiddev;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-public class SecondActivity extends AppCompatActivity {
+import com.google.android.material.navigation.NavigationView;
+
+public class SecondActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private FragmentManager manager;
+    private DrawerLayout drawer;
     private String name;
     private String age;
     private String bio;
     private String occ;
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
 
-        Toolbar toolbar = findViewById(R.id.app_bar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        toolbar.setNavigationOnClickListener(new Toolbar.OnMenuItemClickListener(MenuItem) {
 
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                switch(item.getItemId())
-                {
-                    case R.id.nav_profile:
-                        ProfileFragment frag1 = new ProfileFragment();
-                        FragmentTransaction transaction = manager.beginTransaction();
-                        transaction.replace(R.id.container, frag1, "profile");
-                        transaction.commit();
-                        break;
-                    case R.id.nav_matches:
-                        MatchesFragment frag2 = new MatchesFragment();
-                        FragmentTransaction transaction2 = manager.beginTransaction();
-                        transaction2.replace(R.id.container, frag2, "matches");
-                        transaction2.commit();
-                        break;
-                    case R.id.nav_settings:
-                        SettingsFragment frag3 = new SettingsFragment();
-                        FragmentTransaction transaction3 = manager.beginTransaction();
-                        transaction3.replace(R.id.container, frag3, "settings");
-                        transaction3.commit();
-                        break;
-                }
-                return true;
-            }
-        });
+        drawer = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
 
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
+                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
         manager = getSupportFragmentManager();
-        Intent intent = getIntent();
+        intent = getIntent();
         Bundle b = intent.getExtras();
 
         if (b.containsKey(Constants.KEY_NAME)
@@ -70,23 +58,43 @@ public class SecondActivity extends AppCompatActivity {
 
 
         ProfileFragment fragment = new ProfileFragment();
-        Attachment attach = new Attachment(name, age, bio, occ);
-        fragment.setAttachment(attach);
+        fragment.setAttachment(new Attachment(name, age, bio, occ));
 
         FragmentTransaction transaction = manager.beginTransaction();
-        transaction.add(R.id.container, fragment, "fragA");
+        transaction.add(R.id.fragment_container, fragment, "fragA");
         transaction.commit();
-
-
     }
-
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.shr_toolbar_menu, menu);
-        return true;
+    public void onBackPressed(){
+        if(drawer.isDrawerOpen(GravityCompat.START)){
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
     }
 
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.nav_profile:
+                ProfileFragment fragment = new ProfileFragment();
+                fragment.setAttachment(new Attachment(name, age, bio, occ));
+
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        fragment).commit();
+                break;
+            case R.id.nav_matches:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new MatchesFragment()).commit();
+                break;
+            case R.id.nav_settings:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new SettingsFragment()).commit();
+                break;
+        }
+        return true;
+    }
 
 
     public static class Attachment {

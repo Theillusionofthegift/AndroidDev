@@ -39,29 +39,12 @@ public class ProfileFragment extends Fragment {
         age =  view.findViewById(R.id.age);
         occupation = view.findViewById(R.id.occupation);
 
-        Bundle arg = getArguments();
-
-        if(arg == null) {
-            arg = savedInstanceState;
-        }
-
-        if (arg != null
-                && arg.containsKey(Constants.KEY_NAME)
-                && arg.containsKey(Constants.KEY_AGE)
-                && arg.containsKey(Constants.KEY_BIO)
-                && arg.containsKey(Constants.KEY_OCC)) {
-            String name = arg.getString(Constants.KEY_NAME);
-            String age = arg.getString(Constants.KEY_AGE);
-            String bio = arg.getString(Constants.KEY_BIO);
-            String occupation = arg.getString(Constants.KEY_OCC);
-
-            this.attachment = new SecondActivity.Attachment(name, age, bio, occupation);
-        }
 
         name.setText(this.attachment.name);
         age.setText(this.attachment.age);
         bio.setText(this.attachment.bio);
         occupation.setText((this.attachment.occ));
+
 
         return view;
     }
