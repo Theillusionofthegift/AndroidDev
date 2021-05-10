@@ -19,9 +19,9 @@ public class MatchesCardRecyclerViewAdapter extends RecyclerView.Adapter<Matches
     private List<MatchesEntry> matchesList;
     private ImageRequester imageRequester;
 
-    MatchesCardRecyclerViewAdapter(List<MatchesEntry> productList) {
-        this.matchesList = productList;
-        imageRequester = ImageRequester.getInstance();
+    MatchesCardRecyclerViewAdapter(List<MatchesEntry> matchesList) {
+        this.matchesList = matchesList;
+//        imageRequester = ImageRequester.getInstance();
     }
 
     @NonNull
@@ -33,8 +33,14 @@ public class MatchesCardRecyclerViewAdapter extends RecyclerView.Adapter<Matches
 
     @Override
     public void onBindViewHolder(@NonNull MatchesCardViewHolder holder, int position) {
-        // TODO: Put ViewHolder binding code here in MDC-102    }
+        if (matchesList != null && position < matchesList.size()) {
+            MatchesEntry product = matchesList.get(position);
+            holder.name.setText(product.name);
+            holder.bio.setText(product.bio);
+//            imageRequester.setImageFromUrl(holder.productImage, product.url);
+        }
     }
+
 
     @Override
     public int getItemCount () {

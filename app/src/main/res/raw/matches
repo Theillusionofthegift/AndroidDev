@@ -1,37 +1,52 @@
 [
   {
-    "title": "Vagabond sack",
-    "url": "https://storage.googleapis.com/material-vignettes.appspot.com/image/0-0.jpg",
+    "name": "Alexis Thompson",
+    "url": "https://media.istockphoto.com/photos/happy-smiling-man-looking-away-picture-id1158245623?k=6&m=1158245623&s=612x612&w=0&h=y0LbpRFMHMj_9YC_kpKvLYcijEunxP27KyjXBrDHcFg=",
+    "bio": "Do ipsum non non tempor. Aliquip Lorem mollit do do est sit cillum exercitation."
   },
   {
-    "title": "Stella sunglasses",
-    "url": "https://storage.googleapis.com/material-vignettes.appspot.com/image/1-0.jpg",
+    "name": "Valdez Dennis",
+    "url": "https://media.istockphoto.com/photos/portrait-of-handsome-latino-african-man-picture-id1007763808?k=6&m=1007763808&s=612x612&w=0&h=Js1VDBulbaNw_CF7fghP_nhUPCC-DQTqb7Wym1CdTOI=",
+    "bio": "Deserunt mollit duis duis dolor qui laborum mollit ut labore ex elit incididunt minim ex. Minim veniam do sunt nisi irure."
   },
   {
-    "title": "Whitney belt",
-    "url": "https://storage.googleapis.com/material-vignettes.appspot.com/image/2-0.jpg",
+    "name": "Candy Ross",
+    "url": "https://image.shutterstock.com/image-photo/happy-cheerful-young-woman-wearing-260nw-613759379.jpg",
+    "bio": "Do pariatur eiusmod aliqua ad cupidatat excepteur do voluptate nisi. Id consectetur labore amet elit est aute ullamco dolore proident nulla."
   },
   {
-    "title": "Garden strand",
-    "url": "https://storage.googleapis.com/material-vignettes.appspot.com/image/3-0.jpg",
+    "name": "Dickson Mccray",
+    "url": "https://image.shutterstock.com/image-photo/stock-photo-handsome-unshaven-young-dark-skinned-male-laughing-out-loud-at-funny-meme-he-found-on-internet-250nw-640011838.jpg",
+    "bio": "Reprehenderit labore esse magna aliquip velit deserunt. Occaecat ex aliquip aliquip pariatur."
   },
   {
-    "title": "Strut earrings",
-    "url": "https://storage.googleapis.com/material-vignettes.appspot.com/image/4-0.jpg",
+    "name": "Prince Cannon",
+    "url": "https://image.shutterstock.com/image-photo/portrait-smiling-handsome-business-man-260nw-1190324164.jpg",
+    "bio": "Non ex fugiat et aliqua officia ex non et excepteur irure elit incididunt qui nisi. Cupidatat proident eiusmod elit voluptate aute."
   },
   {
-    "title": "Varsity socks",
-    "url": "https://storage.googleapis.com/material-vignettes.appspot.com/image/5-0.jpg",
+    "name": "Carroll Prince",
+    "url": "https://st.depositphotos.com/1771835/2035/i/600/depositphotos_20355973-stock-photo-portrait-real-high-definition-grey.jpg",
+    "bio": "Amet velit quis nisi ut officia pariatur in sit laborum duis ex. Id aute in occaecat ea."
   },
   {
-    "title": "Weave keyring",
-    "url": "https://storage.googleapis.com/material-vignettes.appspot.com/image/6-0.jpg",
+    "name": "Mullen York",
+    "url": "https://blueprintdigital.com/wp-content/uploads/2014/11/stock-photo-happy-man-giving-okay-sign-portrait-on-white-background-141327337.jpg",
+    "bio": "Veniam sint laborum labore cillum elit enim in ex enim in pariatur dolor minim cupidatat. Ut labore sint culpa labore ut ullamco sunt ullamco id sit aliquip aute consequat."
   },
   {
-    "title": "Gatsby hat",
-    "url": "https://storage.googleapis.com/material-vignettes.appspot.com/image/7-0.jpg",
+    "name": "Workman Riggs",
+    "url": "https://media.istockphoto.com/photos/young-woman-portrait-in-the-city-picture-id1009749608?k=6&m=1009749608&s=612x612&w=0&h=ckLkBgedCLmhG-TBvm48s6pc8kBfHt7Ppec13IgA6bo=",
+    "bio": "Lorem labore excepteur enim ad mollit. Proident elit dolore voluptate non pariatur ea qui eiusmod ad do mollit eiusmod."
   },
   {
-    "title": "Shrug bag",
-    "url": "https://storage.googleapis.com/material-vignettes.appspot.com/image/8-0.jpg",
-  }]
+    "name": "Doris Salas",
+    "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSruFQg9JjFCTJHEgKKPuub37EEcREWKn3Gqg&usqp=CAU",
+    "bio": "Do magna ut magna duis. Esse sunt veniam reprehenderit incididunt voluptate tempor tempor aliqua quis dolor id esse."
+  },
+  {
+    "name": "Weiss House",
+    "url": "https://www.freegreatpicture.com/files/94/28311-business-people-stock.jpg",
+    "bio": "Amet do culpa ex esse ad laboris excepteur exercitation incididunt qui. Exercitation laborum nisi consectetur in dolore consequat deserunt non Lorem."
+  }
+]

@@ -25,25 +25,23 @@ import java.util.List;
 public class MatchesEntry {
     private static final String TAG = MatchesEntry.class.getSimpleName();
 
-    public final String title;
+    public final String name;
     public final Uri dynamicUrl;
     public final String url;
-    public final String price;
-    public final String description;
+    public final String bio;
 
     public MatchesEntry(
-            String title, String dynamicUrl, String url, String price, String description) {
-        this.title = title;
+            String name, String dynamicUrl, String url, String bio) {
+        this.name = name;
         this.dynamicUrl = Uri.parse(dynamicUrl);
         this.url = url;
-        this.price = price;
-        this.description = description;
+        this.bio = bio;
     }
 
     /**
      * Loads a raw JSON at R.raw.products and converts it into a list of MatchesEntry objects
      */
-    public static List<MatchesEntry> initProductEntryList(Resources resources) {
+    public static List<MatchesEntry> initMatchesEntryList(Resources resources) {
         InputStream inputStream = resources.openRawResource(R.raw.matches);
         Writer writer = new StringWriter();
         char[] buffer = new char[1024];

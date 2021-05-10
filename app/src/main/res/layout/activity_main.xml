@@ -28,8 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_container"
             android:ems="10"
-            android:hint="@string/name"
-            app:layout_constraintEnd_toEndOf="@id/title" />
+            android:hint="@string/name" />
 
         <EditText
             android:id="@+id/email"
@@ -37,10 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_container"
             android:ems="10"
-            android:hint="@string/email"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:hint="@string/email" />
 
         <EditText
             android:id="@+id/username"
@@ -48,10 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_container"
             android:ems="10"
-            android:hint="@string/username"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:hint="@string/username" />
 
         <EditText
             android:id="@+id/bio"
@@ -59,10 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_container"
             android:ems="10"
-            android:hint="@string/bio"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:hint="@string/bio" />
 
         <EditText
             android:id="@+id/occupation"
@@ -70,10 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_container"
             android:ems="10"
-            android:hint="@string/occupation"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:hint="@string/occupation" />
 
         <TextView
             android:id="@+id/tvDate"

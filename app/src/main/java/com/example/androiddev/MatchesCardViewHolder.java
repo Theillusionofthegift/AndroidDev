@@ -11,13 +11,13 @@ import com.android.volley.toolbox.NetworkImageView;
 public class MatchesCardViewHolder extends RecyclerView.ViewHolder {
 
     public NetworkImageView productImage;
-    public TextView productTitle;
-    public TextView productPrice;
+    public TextView name;
+    public TextView bio;
 
     public MatchesCardViewHolder(@NonNull View itemView) {
         super(itemView);
         productImage = itemView.findViewById(R.id.product_image);
-        productTitle = itemView.findViewById(R.id.product_title);
-        productPrice = itemView.findViewById(R.id.product_price);
+        name = itemView.findViewById(R.id.match_name);
+        bio = itemView.findViewById(R.id.match_description);
     }
 }
