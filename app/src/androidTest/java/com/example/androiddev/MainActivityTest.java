@@ -104,22 +104,6 @@ public class MainActivityTest {
     }
 
     @Test
-    public void checkNameNotBlank() {
-        onView(withId(R.id.email)).perform(typeText("theillusionofthegift@gmail.com"));
-        onView(withId(R.id.name)).perform(typeText(""));
-
-        onView(withId(R.id.btPickDate)).perform(scrollTo(),(click()));
-
-        onView(withClassName(Matchers.equalTo(android.widget.DatePicker.class.getName()))).perform(PickerActions.setDate(1999 , 4, 21));
-        onView(withText("OK")).perform(click());
-
-        onView(withId(R.id.button2)).perform(scrollTo(), click());
-
-        onView(allOf(withId(R.id.name), hasErrorText("Cannot Be Blank!")));
-
-    }
-
-    @Test
     public void checkUsernameNotBlank() {
         onView(withId(R.id.name)).perform(typeText("Dylan"));
         onView(withId(R.id.email)).perform(typeText("theillusionofthegift@gmail.com"));
