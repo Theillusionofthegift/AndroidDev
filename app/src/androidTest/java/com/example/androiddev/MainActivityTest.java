@@ -102,8 +102,7 @@ public class MainActivityTest {
         onView(allOf(withId(R.id.email), hasErrorText("Email not valid!")));
 
     }
-
-
+  
     @Test
     public void checkUsernameNotBlank() {
         onView(withId(R.id.name)).perform(typeText("Dylan"));
