@@ -38,7 +38,6 @@ public class SecondActivityTest {
         onView(withId(R.id.nav_view))
                 .perform(NavigationViewActions.navigateTo(R.id.nav_matches));
 
-        onView(allOf(withId(R.id.matches_txt))).check((matches(withText("This is where the Matches will go"))));
     }
 
     @Test
