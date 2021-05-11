@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -14,6 +15,8 @@ import com.example.androiddev.network.MatchesEntry;
 
 
 public class MatchesFragment extends Fragment {
+
+    private TextView name;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,6 +42,7 @@ public class MatchesFragment extends Fragment {
 
         return view;
     }
+
 
 
 }

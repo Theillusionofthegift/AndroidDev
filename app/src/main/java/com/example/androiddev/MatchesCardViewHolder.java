@@ -1,6 +1,7 @@
 package com.example.androiddev;
 
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -10,14 +11,24 @@ import com.android.volley.toolbox.NetworkImageView;
 
 public class MatchesCardViewHolder extends RecyclerView.ViewHolder {
 
-    public NetworkImageView productImage;
+    public NetworkImageView matchImage;
     public TextView name;
-    public TextView bio;
 
     public MatchesCardViewHolder(@NonNull View itemView) {
         super(itemView);
-        productImage = itemView.findViewById(R.id.product_image);
+        matchImage = itemView.findViewById(R.id.match_image);
         name = itemView.findViewById(R.id.match_name);
-        bio = itemView.findViewById(R.id.match_description);
+        Button likeBtn = itemView.findViewById(R.id.like_button);
+        likeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MyListener myListener = (MyListener) v.getContext();
+                if (myListener != null) {
+                    myListener.matchesLikeToast(name.getText().toString());
+                }
+            }
+        });
     }
+
+
 }

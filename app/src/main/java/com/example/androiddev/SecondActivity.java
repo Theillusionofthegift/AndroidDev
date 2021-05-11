@@ -3,6 +3,7 @@ package com.example.androiddev;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -15,7 +16,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.navigation.NavigationView;
 
-public class SecondActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class SecondActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,MyListener {
 
     private FragmentManager manager;
     private DrawerLayout drawer;
@@ -96,6 +97,11 @@ public class SecondActivity extends AppCompatActivity implements NavigationView.
                 break;
         }
         return true;
+    }
+
+    @Override
+    public void matchesLikeToast(String n) {
+        Toast.makeText(this,String.format("You Liked " + n ),Toast.LENGTH_LONG).show();
     }
 
 

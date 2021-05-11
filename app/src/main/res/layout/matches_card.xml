@@ -13,7 +13,7 @@
         android:orientation="vertical">
 
         <com.android.volley.toolbox.NetworkImageView
-            android:id="@+id/product_image"
+            android:id="@+id/match_image"
             android:layout_width="match_parent"
             android:layout_height="@dimen/shr_product_card_image_height"
             android:background="?attr/colorPrimaryDark"
@@ -32,12 +32,13 @@
                 android:text="@string/shr_product_title"
                 android:textAppearance="?attr/textAppearanceHeadline6" />
 
-            <TextView
-                android:id="@+id/match_description"
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/like_button"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/shr_product_description"
-                android:textAppearance="?attr/textAppearanceBody2" />
+                android:text="@string/like_button"
+                android:layout_gravity="center" />
+
         </LinearLayout>
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

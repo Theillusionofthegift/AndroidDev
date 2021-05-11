@@ -3,6 +3,7 @@ package com.example.androiddev;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,7 +22,7 @@ public class MatchesCardRecyclerViewAdapter extends RecyclerView.Adapter<Matches
 
     MatchesCardRecyclerViewAdapter(List<MatchesEntry> matchesList) {
         this.matchesList = matchesList;
-//        imageRequester = ImageRequester.getInstance();
+        imageRequester = ImageRequester.getInstance();
     }
 
     @NonNull
@@ -36,8 +37,7 @@ public class MatchesCardRecyclerViewAdapter extends RecyclerView.Adapter<Matches
         if (matchesList != null && position < matchesList.size()) {
             MatchesEntry product = matchesList.get(position);
             holder.name.setText(product.name);
-            holder.bio.setText(product.bio);
-//            imageRequester.setImageFromUrl(holder.productImage, product.url);
+          imageRequester.setImageFromUrl(holder.matchImage, product.url);
         }
     }
 

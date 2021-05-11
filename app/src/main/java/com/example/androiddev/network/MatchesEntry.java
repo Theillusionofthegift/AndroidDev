@@ -28,14 +28,12 @@ public class MatchesEntry {
     public final String name;
     public final Uri dynamicUrl;
     public final String url;
-    public final String bio;
 
     public MatchesEntry(
             String name, String dynamicUrl, String url, String bio) {
         this.name = name;
         this.dynamicUrl = Uri.parse(dynamicUrl);
         this.url = url;
-        this.bio = bio;
     }
 
     /**
