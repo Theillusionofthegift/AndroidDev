@@ -105,4 +105,26 @@ public class SecondActivityTest {
 
         onView(allOf(withId(R.id.profile))).check((matches(withText("Your Profile!"))));
     }
+
+    @Test
+    public void dataResistOrientationChange() throws InterruptedException {
+
+        onView(withId(R.id.drawer_layout))
+                .check(matches(isClosed(Gravity.LEFT))) // Left Drawer should be closed.
+                .perform(DrawerActions.open()); // Open Drawer
+
+        onView(withId(R.id.nav_view))
+                .perform(NavigationViewActions.navigateTo(R.id.nav_profile));
+
+        onView(withId(R.id.drawer_layout))
+                .perform(DrawerActions.close()); // Close Drawer
+
+        TestUtils.rotateScreen(TestUtils.getActivity(rule));
+
+        Thread.sleep(1500);
+
+        onView(allOf(withId(R.id.profile))).check((matches(withText("Your Profile!"))));
+
+
+    }
 }
