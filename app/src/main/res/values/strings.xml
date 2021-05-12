@@ -42,4 +42,5 @@
     <string name="shr_product_title">Matches Card</string>
     <string name="shr_product_description">Description</string>
     <string name="like_button">Like!</string>
+    <string name="TOAST_STRING">You Like</string>
 </resources>
