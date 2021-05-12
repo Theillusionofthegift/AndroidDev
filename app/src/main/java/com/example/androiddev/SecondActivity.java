@@ -2,7 +2,6 @@ package com.example.androiddev;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -109,12 +108,6 @@ public class SecondActivity extends AppCompatActivity implements NavigationView.
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-
-    }
-
-    @Override
-    public void onSaveInstanceState(@NonNull Bundle outState, @NonNull PersistableBundle outPersistentState) {
-        super.onSaveInstanceState(outState,outPersistentState);
 
     }
 
