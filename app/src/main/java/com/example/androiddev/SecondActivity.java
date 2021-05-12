@@ -2,6 +2,7 @@ package com.example.androiddev;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -43,7 +44,9 @@ public class SecondActivity extends AppCompatActivity implements NavigationView.
 
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+
         manager = getSupportFragmentManager();
+
         intent = getIntent();
         Bundle b = intent.getExtras();
 
@@ -57,6 +60,10 @@ public class SecondActivity extends AppCompatActivity implements NavigationView.
                 bio = b.getString(Constants.KEY_BIO);
                 occ = b.getString(Constants.KEY_OCC);
             }
+        }
+
+        if( savedInstanceState != null){
+            return;
         }
 
 
@@ -97,6 +104,18 @@ public class SecondActivity extends AppCompatActivity implements NavigationView.
                 break;
         }
         return true;
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState, @NonNull PersistableBundle outPersistentState) {
+        super.onSaveInstanceState(outState,outPersistentState);
+
     }
 
     @Override

@@ -23,7 +23,20 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
+        if(savedInstanceState != null) {
+            if (savedInstanceState.containsKey(Constants.KEY_NAME)
+                && savedInstanceState.containsKey(Constants.KEY_AGE)
+                && savedInstanceState.containsKey(Constants.KEY_BIO)
+                && savedInstanceState.containsKey(Constants.KEY_OCC)) {
+                String name = savedInstanceState.getString(Constants.KEY_NAME);
+                String age = savedInstanceState.getString(Constants.KEY_AGE);
+                String bio = savedInstanceState.getString(Constants.KEY_BIO);
+                String occ = savedInstanceState.getString(Constants.KEY_OCC);
+
+                SecondActivity.Attachment a = new SecondActivity.Attachment(name,age,bio,occ);
+                this.setAttachment(a);
+            }
+        }
     }
 
 
@@ -49,14 +62,15 @@ public class ProfileFragment extends Fragment {
         return view;
     }
 
+
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
 
-        outState.putString(Constants.KEY_NAME, attachment.name);
-        outState.putString(Constants.KEY_BIO, attachment.bio);
-        outState.putString(Constants.KEY_AGE, attachment.age);
-        outState.putString(Constants.KEY_OCC,attachment.occ);
+        outState.putString(Constants.KEY_NAME, this.attachment.name);
+        outState.putString(Constants.KEY_BIO, this.attachment.bio);
+        outState.putString(Constants.KEY_AGE, this.attachment.age);
+        outState.putString(Constants.KEY_OCC, this.attachment.occ);
     }
 
 
