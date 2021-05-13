@@ -1,7 +1,8 @@
 package com.example.androiddev;
 
 import android.view.View;
-import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,13 +19,15 @@ public class MatchesCardViewHolder extends RecyclerView.ViewHolder {
         super(itemView);
         matchImage = itemView.findViewById(R.id.match_image);
         name = itemView.findViewById(R.id.match_name);
-        Button likeBtn = itemView.findViewById(R.id.like_button);
-        likeBtn.setOnClickListener(new View.OnClickListener() {
+        CheckBox likeBtn = (CheckBox) itemView.findViewById(R.id.like_button);
+        likeBtn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                MyListener myListener = (MyListener) v.getContext();
-                if (myListener != null) {
-                    myListener.matchesLikeToast(name.getText().toString());
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    MyListener myListener = (MyListener) itemView.getContext();
+                    if (myListener != null) {
+                        myListener.matchesLikeToast(name.getText().toString());
+                    }
                 }
             }
         });
