@@ -34,6 +34,7 @@ public class SecondActivity extends AppCompatActivity implements NavigationView.
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
         drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -112,8 +113,10 @@ public class SecondActivity extends AppCompatActivity implements NavigationView.
     }
 
     @Override
-    public void matchesLikeToast(String n) {
-        Toast.makeText(this,String.format("You Liked " + n ),Toast.LENGTH_LONG).show();
+    public void matchesLikeToast(String n, boolean liked) {
+        if(liked) {
+            Toast.makeText(this, String.format("You Liked " + n), Toast.LENGTH_SHORT).show();
+        }
     }
 
 
