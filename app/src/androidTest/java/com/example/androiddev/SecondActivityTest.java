@@ -55,8 +55,9 @@ public class SecondActivityTest {
         Thread.sleep(1000);
 
         onView(withId(R.id.recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition(0, MyViewAction.clickChildViewWithId(R.id.like_button)));
+        Thread.sleep(1000);
         onView(withId(R.id.recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition(0, MyViewAction.clickChildViewWithId(R.id.like_button)));
-        onView(withId(R.id.recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition(0, MyViewAction.clickChildViewWithId(R.id.like_button)));
+        Thread.sleep(1000);
         onView(withText(R.string.mssage)).inRoot(new ToastMatcher())
                 .check(matches(isDisplayed()));
     }
