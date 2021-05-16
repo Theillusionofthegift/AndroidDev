@@ -20,8 +20,10 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.contrib.DrawerMatchers.isClosed;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.isRoot;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
+import static com.example.androiddev.TestUtils.waitFor;
 import static org.hamcrest.Matchers.allOf;
 
 @RunWith(AndroidJUnit4.class)
@@ -34,14 +36,15 @@ public class SecondActivityTest {
 
     @Test
     public void checkNavDrawerMatches() {
+        onView(isRoot()).perform(waitFor(1000));
         // Open Drawer to click on navigation.
         onView(withId(R.id.drawer_layout)).perform(DrawerActions.open()); // Open Drawer
-
+        onView(isRoot()).perform(waitFor(1000));
         onView(withText(R.string.matches))
                 .perform(click()); // Select nav button in nav drawer
-
+        onView(isRoot()).perform(waitFor(1000));
         Espresso.pressBack();
-
+        onView(isRoot()).perform(waitFor(1000));
         onView(withId(R.id.recycler_view)).perform(RecyclerViewActions.scrollToPosition(1));
         onView(withId(R.id.recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition(1, new TestUtils.ClickOnLikeButton()));
         onView(withId(R.id.recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition(1, new TestUtils.ClickOnLikeButton()));
