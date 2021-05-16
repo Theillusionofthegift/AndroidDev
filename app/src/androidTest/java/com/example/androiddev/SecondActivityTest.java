@@ -9,7 +9,6 @@ import androidx.test.espresso.UiController;
 import androidx.test.espresso.ViewAction;
 import androidx.test.espresso.contrib.DrawerActions;
 import androidx.test.espresso.contrib.NavigationViewActions;
-import androidx.test.espresso.contrib.RecyclerViewActions;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
@@ -46,8 +45,8 @@ public class SecondActivityTest {
         onView(withId(R.id.drawer_layout))
                 .perform(DrawerActions.close()); // Close Drawer
 
-        onView(withId(R.id.recycler_view)).perform(
-                RecyclerViewActions.actionOnItemAtPosition(0, MyViewAction.clickChildViewWithId(R.id. like_button)));
+//        onView(withId(R.id.recycler_view)).perform(
+//                RecyclerViewActions.actionOnItemAtPosition(1, MyViewAction.clickChildViewWithId(R.id. like_button)));
 
 
     }
