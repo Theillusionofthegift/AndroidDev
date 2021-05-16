@@ -39,10 +39,10 @@ public class SecondActivityTest {
         onView(withId(R.id.drawer_layout))
                 .check(matches(isClosed(Gravity.LEFT))) // Left Drawer should be closed.
                 .perform(DrawerActions.open()); // Open Drawer
-
+        onView(isRoot()).perform(waitFor(500));
         onView(withId(R.id.nav_view))
                 .perform(NavigationViewActions.navigateTo(R.id.nav_matches)); // Select nav button in nav drawer
-
+        onView(isRoot()).perform(waitFor(500));
         onView(withId(R.id.drawer_layout))
                 .check((matches(isOpen(Gravity.LEFT)))) //Left Drawer is open
                 .perform(DrawerActions.close()); // Close Drawer
