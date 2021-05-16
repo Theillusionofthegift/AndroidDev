@@ -15,6 +15,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.contrib.DrawerMatchers.isClosed;
 import static androidx.test.espresso.contrib.DrawerMatchers.isOpen;
@@ -32,14 +33,14 @@ public class SecondActivityTest {
 
 
     @Test
-    public void checkNavDrawerMatches() throws InterruptedException {
+    public void checkNavDrawerMatches() {
         // Open Drawer to click on navigation.
         onView(withId(R.id.drawer_layout))
                 .check(matches(isClosed(Gravity.LEFT))) // Left Drawer should be closed.
                 .perform(DrawerActions.open()); // Open Drawer
 
-        onView(withId(R.id.nav_view))
-                .perform(NavigationViewActions.navigateTo(R.id.nav_matches)); // Select nav button in nav drawer
+        onView(withText(R.string.matches))
+                .perform(click()); // Select nav button in nav drawer
 
         onView(withId(R.id.drawer_layout))
                 .check((matches(isOpen(Gravity.LEFT)))) //Left Drawer is open
