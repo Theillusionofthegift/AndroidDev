@@ -24,6 +24,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.contrib.DrawerMatchers.isClosed;
 import static androidx.test.espresso.contrib.DrawerMatchers.isOpen;
@@ -55,37 +56,32 @@ public class SecondActivityTest {
                 .perform(DrawerActions.close()); // Close Drawer
 
         Thread.sleep(1000);
-        onView(withId(R.id.recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition(1, MyViewAction.clickChildViewWithId(R.id.like_button)));
-        onView(withId(R.id.recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition(1, MyViewAction.clickChildViewWithId(R.id.like_button)));
+        onView(withId(R.id.recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition(1, new ClickOnLikeButton()));
+        onView(withId(R.id.recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition(1, new ClickOnLikeButton()));
         Thread.sleep(1000);
         onView(withText(R.string.mssage)).inRoot(new ToastMatcher())
                 .check(matches(isDisplayed()));
     }
 
     // Convenience helper
-    public static class MyViewAction {
+    public class ClickOnLikeButton implements ViewAction{
 
-        public static ViewAction clickChildViewWithId(final int id) {
-            return new ViewAction() {
-                @Override
-                public Matcher<View> getConstraints() {
-                    return null;
-                }
+            ViewAction c = click();
 
-                @Override
-                public String getDescription() {
-                    return "Click on a child view with specified id.";
-                }
-
-                @Override
-                public void perform(UiController uiController, View view) {
-                    View v = view.findViewById(id);
-                    v.findViewById(R.id.like_button).setSelected(true);
-                    v.performClick();
-                }
-            };
+        @Override
+        public Matcher<View> getConstraints() {
+            return c.getConstraints();
         }
 
+        @Override
+        public String getDescription() {
+            return "Click on a child view with specified id.";
+        }
+
+        @Override
+        public void perform(UiController uiController, View view) {
+            c.perform(uiController,view.findViewById(R.id.like_button));
+        }
     }
 
     @Test
