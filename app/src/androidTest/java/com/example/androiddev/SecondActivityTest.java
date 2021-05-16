@@ -26,6 +26,7 @@ import org.junit.runner.RunWith;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.contrib.DrawerMatchers.isClosed;
+import static androidx.test.espresso.contrib.DrawerMatchers.isOpen;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
@@ -47,14 +48,15 @@ public class SecondActivityTest {
                 .perform(DrawerActions.open()); // Open Drawer
 
         onView(withId(R.id.nav_view))
-                .perform(NavigationViewActions.navigateTo(R.id.nav_matches));
+                .perform(NavigationViewActions.navigateTo(R.id.nav_matches)); // Select nav button in nav drawer
 
         onView(withId(R.id.drawer_layout))
+                .check((matches(isOpen(Gravity.LEFT)))) //Left Drawer is open
                 .perform(DrawerActions.close()); // Close Drawer
 
         Thread.sleep(1000);
-        onView(withId(R.id.recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition(0, MyViewAction.clickChildViewWithId(R.id.like_button)));
-        onView(withId(R.id.recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition(0, MyViewAction.clickChildViewWithId(R.id.like_button)));
+        onView(withId(R.id.recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition(1, MyViewAction.clickChildViewWithId(R.id.like_button)));
+        onView(withId(R.id.recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition(1, MyViewAction.clickChildViewWithId(R.id.like_button)));
         Thread.sleep(1000);
         onView(withText(R.string.mssage)).inRoot(new ToastMatcher())
                 .check(matches(isDisplayed()));
