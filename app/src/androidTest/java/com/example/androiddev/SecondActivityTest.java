@@ -52,6 +52,9 @@ public class SecondActivityTest {
         onView(withId(R.id.drawer_layout))
                 .perform(DrawerActions.close()); // Close Drawer
 
+        Thread.sleep(1000);
+
+        onView(withId(R.id.recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition(0, MyViewAction.clickChildViewWithId(R.id.like_button)));
         onView(withId(R.id.recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition(0, MyViewAction.clickChildViewWithId(R.id.like_button)));
         onView(withId(R.id.recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition(0, MyViewAction.clickChildViewWithId(R.id.like_button)));
         onView(withText(R.string.mssage)).inRoot(new ToastMatcher())
@@ -76,6 +79,7 @@ public class SecondActivityTest {
                 @Override
                 public void perform(UiController uiController, View view) {
                     View v = view.findViewById(id);
+                    v.setSelected(true);
                     v.performClick();
                 }
             };
