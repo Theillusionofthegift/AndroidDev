@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,8 +19,8 @@ import java.util.ArrayList;
 public class MatchesFragment extends Fragment {
 
     public ArrayList matchesList = new ArrayList();
-    private MatchesViewModel viewModel;
-    private FragmentManager manager;
+    private MatchesViewModel viewModel = new MatchesViewModel();
+    private RecyclerView recyclerView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -37,21 +36,19 @@ public class MatchesFragment extends Fragment {
             @NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment with the ProductGrid theme
         View view = inflater.inflate(R.layout.fragment_matches, container, false);
-        viewModel = new MatchesViewModel();
+        int largePadding = getResources().getDimensionPixelSize(R.dimen.matches_grid_spacing);
+        int smallPadding = getResources().getDimensionPixelSize(R.dimen.matches_grid_spacing_small);
+        recyclerView = view.findViewById(R.id.recycler_view);
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2, GridLayoutManager.VERTICAL, false));
+        MatchesCardRecyclerViewAdapter adapter = new MatchesCardRecyclerViewAdapter(matchesList);
+        recyclerView.setAdapter(adapter);
+        recyclerView.addItemDecoration(new MatchesGridDecoration(largePadding, smallPadding));
 
         viewModel.getMatches(
                 (ArrayList<Match> matches) -> {
-                    RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
-                    recyclerView.setHasFixedSize(true);
-                    recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2, GridLayoutManager.VERTICAL, false));
-                    MatchesCardRecyclerViewAdapter adapter = new MatchesCardRecyclerViewAdapter(matches);
-                    recyclerView.setAdapter(adapter);
-                    int largePadding = getResources().getDimensionPixelSize(R.dimen.matches_grid_spacing);
-                    int smallPadding = getResources().getDimensionPixelSize(R.dimen.matches_grid_spacing_small);
-                    recyclerView.addItemDecoration(new MatchesGridDecoration(largePadding, smallPadding));
+                    adapter.setMatchesList(matches);
+                    adapter.notifyDataSetChanged();
                 });
-
-
 
         return view;
     }

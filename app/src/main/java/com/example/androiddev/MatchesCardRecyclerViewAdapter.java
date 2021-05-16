@@ -34,9 +34,10 @@ public class MatchesCardRecyclerViewAdapter extends RecyclerView.Adapter<Matches
 
     @Override
     public void onBindViewHolder(@NonNull MatchesCardViewHolder holder, int position) {
-        if (matchesList != null && position < matchesList.size()) {
-            Match m = matchesList.get(position);
+        if (matchesList != null) {
+            Match m = this.matchesList.get(position);
             holder.name.setText(m.name);
+            holder.m = m;
             holder.setLiked(m.liked);
           imageRequester.setImageFromUrl(holder.matchImage, m.imageUrl);
         }
@@ -46,5 +47,9 @@ public class MatchesCardRecyclerViewAdapter extends RecyclerView.Adapter<Matches
     @Override
     public int getItemCount () {
         return matchesList.size();
+    }
+
+    public void setMatchesList(List<Match> m) {
+        this.matchesList = m;
     }
 }

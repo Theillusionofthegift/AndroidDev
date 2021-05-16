@@ -1,5 +1,7 @@
 package com.example.androiddev;
 
+import com.example.androiddev.model.Match;
+
 public interface MyListener {
-    void matchesLikeToast(String n, boolean liked);
+    void matchesLikeToast(Match m);
 }

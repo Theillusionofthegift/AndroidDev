@@ -8,11 +8,13 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.toolbox.NetworkImageView;
+import com.example.androiddev.model.Match;
 
 public class MatchesCardViewHolder extends RecyclerView.ViewHolder {
 
     public NetworkImageView matchImage;
     public TextView name;
+    public Match m;
     CheckBox likeBtn;
 
     public MatchesCardViewHolder(@NonNull View itemView) {
@@ -25,7 +27,7 @@ public class MatchesCardViewHolder extends RecyclerView.ViewHolder {
             public void onClick(View v) {
                 MyListener myListener = (MyListener) itemView.getContext();
                 if (myListener != null) {
-                    myListener.matchesLikeToast(name.getText().toString(), likeBtn.isChecked());
+                    myListener.matchesLikeToast(m);
                 }
             }
         });
