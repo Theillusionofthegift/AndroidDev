@@ -49,9 +49,6 @@ public class SecondActivityTest {
         onView(withId(R.id.recycler_view)).perform(
                 RecyclerViewActions.actionOnItemAtPosition(0, MyViewAction.clickChildViewWithId(R.id. like_button)));
 
-        Thread.sleep(1500);
-
-//        onView(withText(R.string.TOAST_STRING)).inRoot(withDecorView(not(is(getActivity().getWindow().getDecorView())))).check(matches(isDisplayed()));
 
     }
 
