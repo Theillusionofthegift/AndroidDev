@@ -2,35 +2,27 @@ package com.example.androiddev;
 
 
 import android.os.Bundle;
-import android.os.IBinder;
 import android.view.Gravity;
-import android.view.View;
-import android.view.WindowManager;
 
-import androidx.test.espresso.Root;
-import androidx.test.espresso.UiController;
-import androidx.test.espresso.ViewAction;
 import androidx.test.espresso.contrib.DrawerActions;
 import androidx.test.espresso.contrib.NavigationViewActions;
 import androidx.test.espresso.contrib.RecyclerViewActions;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
-import org.hamcrest.Description;
-import org.hamcrest.Matcher;
-import org.hamcrest.TypeSafeMatcher;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static androidx.test.espresso.Espresso.onView;
-import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.contrib.DrawerMatchers.isClosed;
 import static androidx.test.espresso.contrib.DrawerMatchers.isOpen;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.isRoot;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
+import static com.example.androiddev.TestUtils.waitFor;
 import static org.hamcrest.Matchers.allOf;
 
 @RunWith(AndroidJUnit4.class)
@@ -55,34 +47,16 @@ public class SecondActivityTest {
                 .check((matches(isOpen(Gravity.LEFT)))) //Left Drawer is open
                 .perform(DrawerActions.close()); // Close Drawer
 
-        Thread.sleep(1000);
-        onView(withId(R.id.recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition(1, new ClickOnLikeButton()));
-        onView(withId(R.id.recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition(1, new ClickOnLikeButton()));
-        Thread.sleep(1000);
-        onView(withText(R.string.mssage)).inRoot(new ToastMatcher())
+        onView(isRoot()).perform(waitFor(500));
+        onView(withId(R.id.recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition(1, new TestUtils.ClickOnLikeButton()));
+        onView(withId(R.id.recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition(1, new TestUtils.ClickOnLikeButton()));
+        onView(isRoot()).perform(waitFor(500));
+        onView(withText(R.string.mssage)).inRoot(new TestUtils.ToastMatcher())
                 .check(matches(isDisplayed()));
     }
 
     // Convenience helper
-    public class ClickOnLikeButton implements ViewAction{
 
-            ViewAction c = click();
-
-        @Override
-        public Matcher<View> getConstraints() {
-            return c.getConstraints();
-        }
-
-        @Override
-        public String getDescription() {
-            return "Click on a child view with specified id.";
-        }
-
-        @Override
-        public void perform(UiController uiController, View view) {
-            c.perform(uiController,view.findViewById(R.id.like_button));
-        }
-    }
 
     @Test
     public void checkNavDrawerSettings() {
@@ -131,25 +105,5 @@ public class SecondActivityTest {
 
     }
 
-    public class ToastMatcher extends TypeSafeMatcher<Root> {
 
-        @Override
-        public void describeTo(Description description) {
-            description.appendText("is toast");
-        }
-
-        @Override
-        public boolean matchesSafely(Root root) {
-            int type = root.getWindowLayoutParams().get().type;
-            if ((type == WindowManager.LayoutParams.TYPE_TOAST)) {
-                IBinder windowToken = root.getDecorView().getWindowToken();
-                IBinder appToken = root.getDecorView().getApplicationWindowToken();
-                if (windowToken == appToken) {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-    }
 }
