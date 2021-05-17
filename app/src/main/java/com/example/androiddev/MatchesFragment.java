@@ -53,6 +53,11 @@ public class MatchesFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onPause() {
+        viewModel.clear();
+        super.onPause();
+    }
 
 
 }

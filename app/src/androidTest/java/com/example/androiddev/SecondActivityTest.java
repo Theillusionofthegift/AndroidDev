@@ -35,7 +35,7 @@ public class SecondActivityTest {
 
 
     @Test
-    public void checkNavDrawerMatches() {
+    public void testMatchesLikeToast() {
         onView(isRoot()).perform(waitFor(1000));
         // Open Drawer to click on navigation.
         onView(withId(R.id.drawer_layout)).perform(DrawerActions.open()); // Open Drawer
@@ -53,7 +53,23 @@ public class SecondActivityTest {
                 .check(matches(isDisplayed()));
     }
 
-    // Convenience helper
+    @Test
+    public void testRecyclerViewScroll() {
+        onView(isRoot()).perform(waitFor(1000));
+        // Open Drawer to click on navigation.
+        onView(withId(R.id.drawer_layout)).perform(DrawerActions.open()); // Open Drawer
+        onView(isRoot()).perform(waitFor(1000));
+        onView(withText(R.string.matches))
+                .perform(click()); // Select nav button in nav drawer
+        onView(isRoot()).perform(waitFor(1000));
+        onView(withId(R.id.drawer_layout)).perform(DrawerActions.close()); // Open Drawer
+
+        onView(allOf(withId(R.id.recycler_view))).perform(RecyclerViewActions.actionOnItemAtPosition(4, new TestUtils.ClickOnLikeButton()));
+        onView(allOf(withId(R.id.recycler_view))).perform(RecyclerViewActions.actionOnItemAtPosition(4, new TestUtils.ClickOnLikeButton()));
+
+        onView(withText(R.string.mssage2)).inRoot(new TestUtils.ToastMatcher())
+                .check(matches(isDisplayed()));
+    }
 
 
     @Test

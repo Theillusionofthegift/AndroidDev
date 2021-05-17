@@ -126,6 +126,12 @@ public class SecondActivity extends AppCompatActivity implements NavigationView.
         viewModel.updateMatch(m);
     }
 
+    @Override
+    protected void onPause() {
+        viewModel.clear();
+        super.onPause();
+    }
+
 
     public static class Attachment {
         String name;
