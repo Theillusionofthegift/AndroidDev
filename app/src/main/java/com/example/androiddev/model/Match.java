@@ -12,6 +12,10 @@ public class Match implements Parcelable {
     public boolean liked;
     public String imageUrl;
 
+    public Match(){
+
+    }
+
     public Match(String name, boolean liked, String imageUrl) {
         this.name = name;
         this.liked = liked;
