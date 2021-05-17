@@ -43,4 +43,7 @@
     <string name="shr_product_description">Description</string>
     <string name="like_button">Like!</string>
     <string name="TOAST_STRING">You Like</string>
+    <string name="mssage">"You Liked Mark the King"</string>
+    <string name="matches">Matches</string>
+    <string name="mssage2">You Liked Money man Ben</string>
 </resources>

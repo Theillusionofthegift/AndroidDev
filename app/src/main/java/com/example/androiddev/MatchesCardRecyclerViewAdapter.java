@@ -7,8 +7,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.androiddev.model.Match;
 import com.example.androiddev.network.ImageRequester;
-import com.example.androiddev.network.MatchesEntry;
 
 import java.util.List;
 
@@ -17,10 +17,10 @@ import java.util.List;
  */
 public class MatchesCardRecyclerViewAdapter extends RecyclerView.Adapter<MatchesCardViewHolder> {
 
-    private List<MatchesEntry> matchesList;
+    private List<Match> matchesList;
     private ImageRequester imageRequester;
 
-    MatchesCardRecyclerViewAdapter(List<MatchesEntry> matchesList) {
+    MatchesCardRecyclerViewAdapter(List<Match> matchesList) {
         this.matchesList = matchesList;
         imageRequester = ImageRequester.getInstance();
     }
@@ -34,10 +34,12 @@ public class MatchesCardRecyclerViewAdapter extends RecyclerView.Adapter<Matches
 
     @Override
     public void onBindViewHolder(@NonNull MatchesCardViewHolder holder, int position) {
-        if (matchesList != null && position < matchesList.size()) {
-            MatchesEntry product = matchesList.get(position);
-            holder.name.setText(product.name);
-          imageRequester.setImageFromUrl(holder.matchImage, product.url);
+        if (matchesList != null) {
+            Match m = this.matchesList.get(position);
+            holder.name.setText(m.name);
+            holder.m = m;
+            holder.setLiked(m.liked);
+            imageRequester.setImageFromUrl(holder.matchImage, m.imageUrl);
         }
     }
 
@@ -45,5 +47,9 @@ public class MatchesCardRecyclerViewAdapter extends RecyclerView.Adapter<Matches
     @Override
     public int getItemCount () {
         return matchesList.size();
+    }
+
+    public void setMatchesList(List<Match> m) {
+        this.matchesList = m;
     }
 }

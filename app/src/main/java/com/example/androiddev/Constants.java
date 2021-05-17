@@ -4,6 +4,7 @@ package com.example.androiddev;
 class Constants {
     public static final String KEY_BIO = "bio" ;
     public static final String KEY_OCC = "occupation" ;
+    public static final String KEY_MATCHES = "matches";
     static final String KEY_NAME = "name";
     static final String KEY_BUTTON_TXT = "button_txt";
     static final String KEY_AGE = "age";

@@ -3,26 +3,27 @@ package com.example.androiddev;
 
 import android.os.Bundle;
 import android.view.Gravity;
-import android.view.View;
 
-import androidx.test.espresso.UiController;
-import androidx.test.espresso.ViewAction;
+import androidx.test.espresso.Espresso;
 import androidx.test.espresso.contrib.DrawerActions;
 import androidx.test.espresso.contrib.NavigationViewActions;
 import androidx.test.espresso.contrib.RecyclerViewActions;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
-import org.hamcrest.Matcher;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.contrib.DrawerMatchers.isClosed;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.isRoot;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
+import static com.example.androiddev.TestUtils.waitFor;
 import static org.hamcrest.Matchers.allOf;
 
 @RunWith(AndroidJUnit4.class)
@@ -34,51 +35,42 @@ public class SecondActivityTest {
 
 
     @Test
-    public void checkNavDrawerMatches() throws InterruptedException {
+    public void testMatchesLikeToast() {
+        onView(isRoot()).perform(waitFor(1000));
         // Open Drawer to click on navigation.
-        onView(withId(R.id.drawer_layout))
-                .check(matches(isClosed(Gravity.LEFT))) // Left Drawer should be closed.
-                .perform(DrawerActions.open()); // Open Drawer
+        onView(withId(R.id.drawer_layout)).perform(DrawerActions.open()); // Open Drawer
+        onView(isRoot()).perform(waitFor(1000));
+        onView(withText(R.string.matches))
+                .perform(click()); // Select nav button in nav drawer
+        onView(isRoot()).perform(waitFor(1000));
+        Espresso.pressBack();
+        onView(isRoot()).perform(waitFor(1000));
+        onView(withId(R.id.recycler_view)).perform(RecyclerViewActions.scrollToPosition(1));
+        onView(withId(R.id.recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition(1, new TestUtils.ClickOnLikeButton()));
+        onView(withId(R.id.recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition(1, new TestUtils.ClickOnLikeButton()));
 
-        onView(withId(R.id.nav_view))
-                .perform(NavigationViewActions.navigateTo(R.id.nav_matches));
-
-        onView(withId(R.id.drawer_layout))
-                .perform(DrawerActions.close()); // Close Drawer
-
-        onView(withId(R.id.recycler_view)).perform(
-                RecyclerViewActions.actionOnItemAtPosition(0, MyViewAction.clickChildViewWithId(R.id. like_button)));
-
-        Thread.sleep(1500);
-
-//        onView(withText(R.string.TOAST_STRING)).inRoot(withDecorView(not(is(getActivity().getWindow().getDecorView())))).check(matches(isDisplayed()));
-
+        onView(withText(R.string.mssage)).inRoot(new TestUtils.ToastMatcher())
+                .check(matches(isDisplayed()));
     }
 
-    // Convenience helper
-    public static class MyViewAction {
+//    @Test
+//    public void testRecyclerViewScroll() {
+//        onView(isRoot()).perform(waitFor(1000));
+//        // Open Drawer to click on navigation.
+//        onView(withId(R.id.drawer_layout)).perform(DrawerActions.open()); // Open Drawer
+//        onView(isRoot()).perform(waitFor(1000));
+//        onView(withText(R.string.matches))
+//                .perform(click()); // Select nav button in nav drawer
+//        onView(isRoot()).perform(waitFor(1000));
+//        onView(withId(R.id.drawer_layout)).perform(DrawerActions.close()); // Open Drawer
+//
+//        onView(allOf(withId(R.id.recycler_view))).perform(RecyclerViewActions.actionOnItemAtPosition(4, new TestUtils.ClickOnLikeButton()));
+//        onView(allOf(withId(R.id.recycler_view))).perform(RecyclerViewActions.actionOnItemAtPosition(4, new TestUtils.ClickOnLikeButton()));
+//
+//        onView(withText(R.string.mssage2)).inRoot(new TestUtils.ToastMatcher())
+//                .check(matches(isDisplayed()));
+//    }
 
-        public static ViewAction clickChildViewWithId(final int id) {
-            return new ViewAction() {
-                @Override
-                public Matcher<View> getConstraints() {
-                    return null;
-                }
-
-                @Override
-                public String getDescription() {
-                    return "Click on a child view with specified id.";
-                }
-
-                @Override
-                public void perform(UiController uiController, View view) {
-                    View v = view.findViewById(id);
-                    v.performClick();
-                }
-            };
-        }
-
-    }
 
     @Test
     public void checkNavDrawerSettings() {
@@ -125,6 +117,7 @@ public class SecondActivityTest {
 
         onView(allOf(withId(R.id.profile))).check((matches(withText("Your Profile!"))));
 
-
     }
+
+
 }

@@ -14,11 +14,14 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.androiddev.model.Match;
+import com.example.androiddev.viewmodels.MatchesViewModel;
 import com.google.android.material.navigation.NavigationView;
 
 public class SecondActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,MyListener {
 
     private FragmentManager manager;
+    private MatchesViewModel viewModel;
     private DrawerLayout drawer;
     private String name;
     private String age;
@@ -33,6 +36,7 @@ public class SecondActivity extends AppCompatActivity implements NavigationView.
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        viewModel = new MatchesViewModel();
 
         drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -112,8 +116,20 @@ public class SecondActivity extends AppCompatActivity implements NavigationView.
     }
 
     @Override
-    public void matchesLikeToast(String n) {
-        Toast.makeText(this,String.format("You Liked " + n ),Toast.LENGTH_LONG).show();
+    public void matchesLikeToast(Match m) {
+        if(!m.liked) {
+            Toast.makeText(this, String.format("You Liked " + m.name), Toast.LENGTH_SHORT).show();
+            m.liked = true;
+        } else {
+            m.liked = false;
+        }
+        viewModel.updateMatch(m);
+    }
+
+    @Override
+    protected void onPause() {
+        viewModel.clear();
+        super.onPause();
     }
 
 
