@@ -46,4 +46,16 @@
     <string name="mssage">"You Liked Mark the King"</string>
     <string name="matches">Matches</string>
     <string name="mssage2">You Liked Money man Ben</string>
+    <string name="reminder_time">Daily Matches Reminder Time</string>
+    <string name="max_search">Maximum Distance Search</string>
+    <string name="gender">Gender</string>
+    <string name="private_acct">Private Account</string>
+    <string name="age_range">Interested Age Range</string>
+    <string name="dash">-</string>
+    <string name="save">Save</string>
+    <string-array name="gender_arrays">
+        <item>Male</item>
+        <item>Female</item>
+        <item>Non-Binary</item>
+    </string-array>
 </resources>
