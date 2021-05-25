@@ -3,7 +3,7 @@
     <dimen name="activity_margin">16dp</dimen>
     <dimen name="textViewWidthHeightGravity">160dp</dimen>
     <dimen name="large_font_size">48sp</dimen>
-    <dimen name="medium_font_size">28sp</dimen>
+    <dimen name="medium_font_size">22sp</dimen>
     <dimen name="small_font_size">16sp</dimen>
     <dimen name="xsmall_font_size">14sp</dimen>
     <dimen name="margin_container">20dp</dimen>
