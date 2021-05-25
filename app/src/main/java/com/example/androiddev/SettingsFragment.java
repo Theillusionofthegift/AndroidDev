@@ -50,7 +50,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
 
         reminderTime = view.findViewById(R.id.time_spinner);
         maxSearch = view.findViewById(R.id.max_dist);
-        gender = view.findViewById(R.id.spinner1);
+        gender = view.findViewById(R.id.gender);
         privateAcct = view.findViewById(R.id.checkbox1);
         minAge = view.findViewById(R.id.minAge);
         maxAge = view.findViewById((R.id.maxAge));

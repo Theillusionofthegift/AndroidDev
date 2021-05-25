@@ -71,7 +71,7 @@
             android:layout_height="@dimen/spinner_height"
             android:spinnerMode="dropdown"
             android:layout_below="@id/gender_txt"
-            android:id="@+id/spinner1"
+            android:id="@+id/gender"
             android:entries="@array/gender_arrays"
             android:prompt="@string/gender"
             android:textAlignment="center"/>
@@ -79,7 +79,7 @@
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/spinner1"
+            android:layout_below="@+id/gender"
             android:text="@string/private_acct"
             android:layout_centerHorizontal="true"
             android:id="@+id/checkbox1"

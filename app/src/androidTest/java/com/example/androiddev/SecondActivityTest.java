@@ -15,6 +15,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
@@ -25,6 +26,8 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static com.example.androiddev.TestUtils.waitFor;
 import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.instanceOf;
+import static org.hamcrest.Matchers.is;
 
 @RunWith(AndroidJUnit4.class)
 public class SecondActivityTest {
@@ -53,25 +56,6 @@ public class SecondActivityTest {
                 .check(matches(isDisplayed()));
     }
 
-//    @Test
-//    public void testRecyclerViewScroll() {
-//        onView(isRoot()).perform(waitFor(1000));
-//        // Open Drawer to click on navigation.
-//        onView(withId(R.id.drawer_layout)).perform(DrawerActions.open()); // Open Drawer
-//        onView(isRoot()).perform(waitFor(1000));
-//        onView(withText(R.string.matches))
-//                .perform(click()); // Select nav button in nav drawer
-//        onView(isRoot()).perform(waitFor(1000));
-//        onView(withId(R.id.drawer_layout)).perform(DrawerActions.close()); // Open Drawer
-//
-//        onView(allOf(withId(R.id.recycler_view))).perform(RecyclerViewActions.actionOnItemAtPosition(4, new TestUtils.ClickOnLikeButton()));
-//        onView(allOf(withId(R.id.recycler_view))).perform(RecyclerViewActions.actionOnItemAtPosition(4, new TestUtils.ClickOnLikeButton()));
-//
-//        onView(withText(R.string.mssage2)).inRoot(new TestUtils.ToastMatcher())
-//                .check(matches(isDisplayed()));
-//    }
-
-
     @Test
     public void checkNavDrawerSettings() {
         // Open Drawer to click on navigation.
@@ -81,7 +65,27 @@ public class SecondActivityTest {
 
         onView(withId(R.id.nav_view))
                 .perform(NavigationViewActions.navigateTo(R.id.nav_settings));
+        Espresso.pressBack();
+        onView(isRoot()).perform(waitFor(1000));
 
+        onView(withId(R.id.time_spinner)).perform(click());
+        onView(withText("1:00")).perform(click());
+        onView(withId(R.id.max_dist)).perform(click());
+        onData(allOf(is(instanceOf(String.class)), is("10")))
+                .perform(click());
+        onView(withId(R.id.gender)).perform(click());
+        onView(withText("Female")).perform(click());
+        onView(withId(R.id.checkbox1)).perform(click());
+        onView(withId(R.id.minAge)).perform(click());
+        onData(allOf(is(instanceOf(String.class)), is("20")))
+                .perform(click());
+        onView(withId(R.id.maxAge)).perform(click());
+        onData(allOf(is(instanceOf(String.class)), is("25")))
+                .perform(click());
+
+        onView(withId(R.id.save_settings)).perform(click());
+        onView(withText("Settings Saved")).inRoot(new TestUtils.ToastMatcher())
+                .check(matches(isDisplayed()));
     }
 
     @Test
