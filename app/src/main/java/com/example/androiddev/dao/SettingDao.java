@@ -3,18 +3,21 @@ package com.example.androiddev.dao;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
+import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
-import androidx.room.Update;
 
 import com.example.androiddev.entity.Settings;
+
+import java.util.List;
 
 @Dao
 public interface SettingDao {
 
     @Query("SELECT * FROM settings" )
-    LiveData<Settings> getSettings();
+    LiveData<List<Settings>> getSettings();
 
-    @Update
-    void updateSettings(Settings... settings);
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void saveSettings(Settings... settings);
 
 }
