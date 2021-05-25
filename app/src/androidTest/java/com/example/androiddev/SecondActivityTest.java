@@ -82,7 +82,6 @@ public class SecondActivityTest {
         onView(withId(R.id.nav_view))
                 .perform(NavigationViewActions.navigateTo(R.id.nav_settings));
 
-        onView(allOf(withId(R.id.settings_txt))).check((matches(withText("This is where the settings will go"))));
     }
 
     @Test
