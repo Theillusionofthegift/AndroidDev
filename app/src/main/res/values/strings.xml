@@ -55,7 +55,14 @@
     <string name="save">Save</string>
     <string name="set_save">Settings Saved</string>
     <string name="timerem">Time</string>
+    <string name="pause">Pause</string>
+    <string name="resume">Resume</string>
+    <string name="provider_started_running">GPS provider started running</string>
     <string name="gender_txt">Gender:</string>
+    <string name="enable_location">Enable Location</string>
+    <string name="location_message">Your Locations Settings is set to \'Off\'. Please Enable Location to use this app</string>
+    <string name="location_settings">Location Settings</string>
+    <string name="location_cancel">Cancel</string>
     <string-array name="gender_arrays">
         <item>Male</item>
         <item>Female</item>
