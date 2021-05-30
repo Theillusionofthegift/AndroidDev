@@ -18,6 +18,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,6 +28,7 @@ import com.example.androiddev.viewmodels.MatchesViewModel;
 import com.example.androiddev.viewmodels.SettingsViewModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class MatchesFragment extends Fragment {
@@ -37,6 +40,7 @@ public class MatchesFragment extends Fragment {
     Location userLoc;
     MatchesCardRecyclerViewAdapter adapter;
     SettingsViewModel settingsViewModel;
+    Float maxDist = 16093.44f;  // 10 miles at first but is set by settings in the getDistanceSettings function
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -63,7 +67,8 @@ public class MatchesFragment extends Fragment {
         adapter = new MatchesCardRecyclerViewAdapter(matchesList);
         recyclerView.setAdapter(adapter);
         recyclerView.addItemDecoration(new MatchesGridDecoration(largePadding, smallPadding));
-        gpsUpdates(view);
+        gpsUpdates(view); //
+        getDistanceSetting();  // sets the distance based on the settings
         getMatches();
 
 
@@ -147,7 +152,7 @@ public class MatchesFragment extends Fragment {
                     float[] dist = new float[1];
                     for( Match match : matches){
                         Location.distanceBetween(Double.parseDouble(match.lat), Double.parseDouble(match.longitude), userLoc.getLatitude(), userLoc.getLongitude(), dist);
-                        if(dist[0] > (16093.44f) ){
+                        if(dist[0] > maxDist ){
                             tooFar.add(match);
                         }
                     }
@@ -157,48 +162,56 @@ public class MatchesFragment extends Fragment {
                 });
     }
 
-    //Returns distance set by user in meters
-//    public Float getDistance(){
-//        settingsViewModel = new ViewModelProvider(this).get(SettingsViewModel.class);
-//        Float five = new Float(8046.72f);
-//        Float ten = new Float(16093.44f);
-//        Float twentyfive = new Float(40233.6f);
-//        Float fifty = new Float(80467.2f);
-//        Float distance;
-//
-//        // TODO make this read settings and set date
-//        final Observer<List<com.example.androiddev.entity.Settings>> getSettingsObserver = (new Observer<List<com.example.androiddev.entity.Settings>>() {
-//            @Override
-//            public void onChanged(List<com.example.androiddev.entity.Settings> settings) {
-//                ;
-//                if (settings == null || settings.size() <= 0) {
-//                    return;
-//                }
-//
-//                com.example.androiddev.entity.Settings set = settings.get(settings.size() - 1);
-//
-//                if (set == null) {
-//                    return;
-//                }
-//                Float dist = 0f;
-//                switch (set.getMaxDist()) {
-//                    case 0:
-//                        dist = five;
-//                        break;
-//                    case 1:
-//                        dist = ten;
-//                        break;
-//                    case 2:
-//                        dist = twentyfive;
-//                        break;
-//                    case 3:
-//                        dist = fifty;
-//                }
-//                distance = dist;
-//            }
-//        });
-//       return distance;
+//    sets the maxDist variable to that of what is in the settings
+    public void getDistanceSetting() {
+        settingsViewModel = new ViewModelProvider(this).get(SettingsViewModel.class);
+        Float five = new Float(8046.72f);
+        Float ten = new Float(16093.44f);
+        Float twentyfive = new Float(40233.6f);
+        Float fifty = new Float(80467.2f);
+        Float oneHundred = new Float(160934.4f);
+        Float distance;
 
+        final Observer<List<com.example.androiddev.entity.Settings>> getSettingsObserver = (new Observer<List<com.example.androiddev.entity.Settings>>() {
+            @Override
+            public void onChanged(List<com.example.androiddev.entity.Settings> settings) {
+                ;
+                if (settings == null || settings.size() <= 0) {
+                    return;
+                }
+
+                com.example.androiddev.entity.Settings set = settings.get(settings.size() - 1);
+
+                if (set == null) {
+                    return;
+                }
+                Float dist = 0f;
+                switch (set.getMaxDist()) {
+                    case 0:
+                        dist = five;
+                        break;
+                    case 1:
+                        dist = ten;
+                        break;
+                    case 2:
+                        dist = twentyfive;
+                        break;
+                    case 3:
+                        dist = fifty;
+                        break;
+                    case 4:
+                        dist = oneHundred;
+                        break;
+                }
+                setDistance(dist);
+            }
+        });
+        settingsViewModel.loadSettings(this.getContext()).observe(this.getViewLifecycleOwner(),getSettingsObserver);
+    }
+
+    public void setDistance(Float f){
+        this.maxDist = f;
+    }
 
 
 }
