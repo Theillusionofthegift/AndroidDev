@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -58,7 +57,7 @@ public class MatchesFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_matches, container, false);
 
         locationManager = (LocationManager)getActivity().getSystemService(Context.LOCATION_SERVICE);
-        userLoc = new Location(getProviderName());
+        userLoc = new Location(LocationManager.GPS_PROVIDER);
 
         int largePadding = getResources().getDimensionPixelSize(R.dimen.matches_grid_spacing);
         int smallPadding = getResources().getDimensionPixelSize(R.dimen.matches_grid_spacing_small);
@@ -111,21 +110,10 @@ public class MatchesFragment extends Fragment {
         }
         if (ActivityCompat.checkSelfPermission(this.getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
 
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 10, locationListenerNetwork);
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 60 * 1000, 10, locationListenerNetwork);
             Toast.makeText(this.getContext(), R.string.provider_started_running, Toast.LENGTH_LONG).show();
         }
 
-    }
-
-    String getProviderName() {
-
-        Criteria criteria = new Criteria();
-        criteria.setPowerRequirement(Criteria.POWER_LOW); // Chose your desired power consumption level.
-        criteria.setAccuracy(Criteria.ACCURACY_FINE); // Choose your accuracy requirement.
-
-        // Provide your criteria and flag enabledOnly that tells
-        // LocationManager only to return active providers.
-        return locationManager.getBestProvider(criteria, true);
     }
 
     private final LocationListener locationListenerNetwork = new LocationListener() {

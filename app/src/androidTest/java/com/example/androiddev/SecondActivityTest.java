@@ -7,7 +7,6 @@ import android.view.Gravity;
 import androidx.test.espresso.Espresso;
 import androidx.test.espresso.contrib.DrawerActions;
 import androidx.test.espresso.contrib.NavigationViewActions;
-import androidx.test.espresso.contrib.RecyclerViewActions;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
@@ -18,6 +17,7 @@ import org.junit.runner.RunWith;
 import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.assertion.ViewAssertions.doesNotExist;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.contrib.DrawerMatchers.isClosed;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
@@ -48,12 +48,7 @@ public class SecondActivityTest {
         onView(isRoot()).perform(waitFor(1000));
         Espresso.pressBack();
         onView(isRoot()).perform(waitFor(1000));
-        onView(withId(R.id.recycler_view)).perform(RecyclerViewActions.scrollToPosition(1));
-        onView(withId(R.id.recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition(1, new TestUtils.ClickOnLikeButton()));
-        onView(withId(R.id.recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition(1, new TestUtils.ClickOnLikeButton()));
-
-        onView(withText(R.string.mssage)).inRoot(new TestUtils.ToastMatcher())
-                .check(matches(isDisplayed()));
+        onView(withId(R.id.card_view)).check(doesNotExist());
     }
 
     @Test
