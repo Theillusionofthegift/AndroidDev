@@ -59,7 +59,7 @@ public class MainActivityTest {
         onView(withId(R.id.email)).perform(typeText("theillusionofthegift@gmail.com"));
         onView(withId(R.id.username)).perform(typeText("Illusion"));
         onView(withId(R.id.bio)).perform(typeText("A very good programmer"));
-        onView(withId(R.id.occupation)).perform(typeText("Software Engineer"));
+        onView(withId(R.id.occupation)).perform(scrollTo(),typeText("Software Engineer"));
 
         TestUtils.rotateScreen(TestUtils.getActivity(activityScenarioRule));
 

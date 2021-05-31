@@ -25,12 +25,4 @@ public class SettingsViewModel extends ViewModel {
             db.settingsDao().saveSettings(settings);
         });
     }
-
-    public void nukeAll(Context context) {
-        AppDatabase db = AppDatabaseSingleton.getDatabase(context);
-        db.getTransactionExecutor().execute(() -> {
-            db.clearAllTables();
-        });
-    }
-
 }
