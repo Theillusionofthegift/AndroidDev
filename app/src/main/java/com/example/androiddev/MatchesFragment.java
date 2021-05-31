@@ -110,13 +110,13 @@ public class MatchesFragment extends Fragment {
         }
         if (ActivityCompat.checkSelfPermission(this.getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
 
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 60 * 1000, 10, locationListenerNetwork);
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 60 * 1000, 10, locationListener);
             Toast.makeText(this.getContext(), R.string.provider_started_running, Toast.LENGTH_LONG).show();
         }
 
     }
 
-    private final LocationListener locationListenerNetwork = new LocationListener() {
+    private final LocationListener locationListener = new LocationListener() {
         public void onLocationChanged(Location location) {
             userLoc.setLatitude(location.getLatitude());
             userLoc.setLongitude(location.getLongitude());
@@ -158,7 +158,6 @@ public class MatchesFragment extends Fragment {
         Float twentyfive = new Float(40233.6f);
         Float fifty = new Float(80467.2f);
         Float oneHundred = new Float(160934.4f);
-        Float distance;
 
         final Observer<List<com.example.androiddev.entity.Settings>> getSettingsObserver = (new Observer<List<com.example.androiddev.entity.Settings>>() {
             @Override
