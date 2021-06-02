@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -56,8 +57,8 @@ public class MatchesFragment extends Fragment {
         // Inflate the layout for this fragment with the ProductGrid theme
         View view = inflater.inflate(R.layout.fragment_matches, container, false);
 
-        locationManager = (LocationManager)getActivity().getSystemService(Context.LOCATION_SERVICE);
-        userLoc = new Location(LocationManager.GPS_PROVIDER);
+        locationManager = (LocationManager) this.getActivity().getSystemService(Context.LOCATION_SERVICE);
+        userLoc = new Location(getProviderName());
 
         int largePadding = getResources().getDimensionPixelSize(R.dimen.matches_grid_spacing);
         int smallPadding = getResources().getDimensionPixelSize(R.dimen.matches_grid_spacing_small);
@@ -108,12 +109,23 @@ public class MatchesFragment extends Fragment {
         if(!checkLocation()) {
             return;
         }
-        if (ActivityCompat.checkSelfPermission(this.getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(this.getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED ||
+        ActivityCompat.checkSelfPermission(this.getContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
 
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 60 * 1000, 10, locationListener);
+            locationManager.requestLocationUpdates(getProviderName(), 0, 0, locationListener);
             Toast.makeText(this.getContext(), R.string.provider_started_running, Toast.LENGTH_LONG).show();
         }
 
+    }
+
+    String getProviderName() {
+
+        Criteria criteria = new Criteria();
+        criteria.setAccuracy(Criteria.ACCURACY_FINE); // Choose your accuracy requirement.
+
+        // Provide your criteria and flag enabledOnly that tells
+        // LocationManager only to return active providers.
+        return locationManager.getBestProvider(criteria, true);
     }
 
     private final LocationListener locationListener = new LocationListener() {
