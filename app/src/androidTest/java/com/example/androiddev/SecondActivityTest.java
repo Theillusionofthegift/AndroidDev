@@ -1,13 +1,11 @@
 package com.example.androiddev;
 
 
-import android.os.Bundle;
 import android.view.Gravity;
 
 import androidx.test.espresso.Espresso;
 import androidx.test.espresso.contrib.DrawerActions;
 import androidx.test.espresso.contrib.NavigationViewActions;
-import androidx.test.espresso.contrib.RecyclerViewActions;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
@@ -31,30 +29,11 @@ import static org.hamcrest.Matchers.is;
 
 @RunWith(AndroidJUnit4.class)
 public class SecondActivityTest {
-    Bundle b = new Bundle();
 
     @Rule
     public ActivityScenarioRule rule = new ActivityScenarioRule<>(SecondActivity.class);
 
 
-    @Test
-    public void testMatchesLikeToast() {
-        onView(isRoot()).perform(waitFor(1000));
-        // Open Drawer to click on navigation.
-        onView(withId(R.id.drawer_layout)).perform(DrawerActions.open()); // Open Drawer
-        onView(isRoot()).perform(waitFor(1000));
-        onView(withText(R.string.matches))
-                .perform(click()); // Select nav button in nav drawer
-        onView(isRoot()).perform(waitFor(1000));
-        Espresso.pressBack();
-        onView(isRoot()).perform(waitFor(1000));
-        onView(withId(R.id.recycler_view)).perform(RecyclerViewActions.scrollToPosition(1));
-        onView(withId(R.id.recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition(1, new TestUtils.ClickOnLikeButton()));
-        onView(withId(R.id.recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition(1, new TestUtils.ClickOnLikeButton()));
-
-        onView(withText(R.string.mssage)).inRoot(new TestUtils.ToastMatcher())
-                .check(matches(isDisplayed()));
-    }
 
     @Test
     public void checkNavDrawerSettings() {
