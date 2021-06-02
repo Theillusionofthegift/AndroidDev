@@ -34,36 +34,6 @@ public class MatchesFragmentTest {
     @Rule
     public ActivityScenarioRule rule = new ActivityScenarioRule<>(SecondActivity.class);
 
-    @Before
-    public void init(){
-
-        getInstrumentation().getUiAutomation().executeShellCommand("appops set " +
-                InstrumentationRegistry.getInstrumentation().getTargetContext().getPackageName() +
-                " android:mock_location allow");
-        LocationManager lm = (LocationManager) TestUtils.getActivity(rule).getSystemService(Context.LOCATION_SERVICE);
-
-        String mocLocationProvider = "mock";
-        if(lm.isProviderEnabled(mocLocationProvider)){
-            lm.removeTestProvider(mocLocationProvider);
-        }
-
-        lm.addTestProvider(mocLocationProvider, false, false,false,false,true,
-                true, true, 0 ,5);
-        lm.setTestProviderEnabled(mocLocationProvider,true);
-
-        Location loc = new Location(mocLocationProvider);
-        Location mockLocation = new Location(mocLocationProvider); // a string
-        mockLocation.setLatitude(47.694021);  // double
-        mockLocation.setLongitude(-122.341440);
-        mockLocation.setAltitude(loc.getAltitude());
-        mockLocation.setTime(System.currentTimeMillis());
-        mockLocation.setAccuracy(1);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            mockLocation.setElapsedRealtimeNanos(SystemClock.elapsedRealtimeNanos());
-        }
-        lm.setTestProviderLocation( mocLocationProvider, mockLocation);
-    }
-
 
     @Test
     public void testMatchesLikeToast() throws InterruptedException {
@@ -76,12 +46,7 @@ public class MatchesFragmentTest {
 
         Espresso.pressBack();
         Thread.sleep(2000);
-        onView(withId(R.id.recycler_view)).perform(RecyclerViewActions.scrollToPosition(1));
-        onView(withId(R.id.recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition(1, new TestUtils.ClickOnLikeButton()));
-        onView(withId(R.id.recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition(1, new TestUtils.ClickOnLikeButton()));
-
-        onView(withText(R.string.mssage)).inRoot(new TestUtils.ToastMatcher())
-                .check(matches(isDisplayed()));
+        onView(withId(R.id.card_view)).check(doesNotExist());
     }
 
 }
